@@ -74,6 +74,18 @@ $ python MIST_cmd.py measure -c test/result/_MIST_ref_cluster.csv -m test/result
     -o, --output PATH        
     output folder in which the result files correspond to each level of cluster. Information of the estimated abundance, 95% CI, P value and similarity are given for each cluster in each file. See example fold ‘test/result/’.
 
+#Tips:
+1.	Users are recommended filtering out host-related reads before applying MIST. Or users can align the mNGS reads against the pan-genomes of pathogens to obtain reads specific to target pathogen species with aligners such as Bowtie2, BWA. These aligned reads can be easily extracted from the resulting SAM files as input of MIST. The pre-built pan-genomes of common pathogens are available at the following addresses.
+2.	The clustering information of reference genomes for common pathogens is also available at the following addresses. The pre-defined ANI thresholds are 98%, 99%, 99.9%, 99.99%. If other thresholds required, users need to do the clustering steps by themselves using the module ‘cluster’.
+3.	Addresses to pre-built database.
+Acinetobacter baumannii: http://bacdb.org/Pre-build-database/Acinetobacter_baumannii.tgz
+Clostriodioides difficile: http://bacdb.org/Pre-build-database/ Clostriodioides_difficile.tgz
+Escherichia coli: http://bacdb.org/Pre-build-database/Escherichia_coli.tgz
+Klebsiella pneumoniae: http://bacdb.org/Pre-build-database/ Klebsiella_pneumoniae.tgz
+Listeria monocytogenes: http://bacdb.org/Pre-build-database/ Listeria_monocytogenes.tgz
+Salmonella enterica: http://bacdb.org/Pre-build-database/ Salmonella_enterica.tgz
+Staphylococcus aureus: http://bacdb.org/Pre-build-database/ Staphylococcus_aureus.tgz
+Streptococcus pneumoniae: http://bacdb.org/Pre-build-database/Streptococcus_pneumoniae.tgz
 
 
 
