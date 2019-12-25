@@ -10,7 +10,28 @@ Bowtie2 (http://bowtie-bio.sourceforge.net/bowtie2/index.shtml) and FastANI (htt
   $ python MIST_cmd.py
   ```
 # Usage
-MIST contains four modules: index, cluster, map, measure.
+MIST contains five modules: index, cluster, species, map, measure.
+
+## MIST-species
+This module functions to perform species-level typing and extract species-specific reads for the downstream strain-level typing. 
+### Command
+```bash
+$ python MIST_cmd.py species –p 8 -1 test/sampledata/read/test.1.fq -2 test/sampledata/read/test.2.fq –d pangenome.index –o test/result/
+```
+### Options:
+  -p, --thread INTEGER      
+Number of threads for Bowtie2 (default: 8)
+  -1, --pair_1 PATH         
+input fq file with #1 mate, paired with pair_2 file
+  -2, --pair_2 PATH         
+input fq file with #2 mate, paired with pair_1 file
+  -d, --database PATH
+		input bowtie2 index file for the pan-genome sequences
+  -o, --output PATH        
+output folder which contains: 1) read counts for each pathogen species (_MIST_species_count.txt); 2) reads specific to each pathogen species (_MIST.*.fq).
+### Tips:
+The pre-built pan-genome index file is available at http://bacdb.org/Pre-built-pangenome.tgz.
+
 ## MIST-Index
   This module functions to index the reference genomes with Bowtie2 indexer (bowtie2-build). Once the reference genomes are indexed, users do not need to re-index the genome before each analysis of metagenomics datasets.
 ### Command
@@ -49,7 +70,7 @@ MIST contains four modules: index, cluster, map, measure.
       -i, --indexpath PATH       
     input folder of index files for reference genomes; produced by MIST-index module.
       -U, --single_end PATH     
-    input single-end fq file
+    input single-end fq file;can be the output produced by MIST-species module.
       -1, --pair_1 PATH         
     input fq file with #1 mate, paired with pair_2 file
       -2, --pair_2 PATH         
