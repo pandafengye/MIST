@@ -13,6 +13,18 @@ def cli():
     pass
 
 @cli.command()
+@click.option('-p','--threads',type=int,help="Number of threads for Bowtie2 (default: 8)")
+@click.option('-1','--pair_1',type=click.Path(exists=True),help="input fq file with #1 mate, paired with pair_1 file")
+@click.option('-2','--pair_2',type=click.Path(exists=True),help="input fq file with #2 mate, paired with pair_2 file")
+@click.option('-d','--database',type=click.Path(exists=True),help="input bowtie2 index file for the pan-genome sequences")
+@click.option('-o','--output',type=click.Path(exists=False, writable=True),help="output folder which contains: 1) read counts for each pathogen species (_MIST_species_count.txt); 2) reads specific to each pathogen species (_MIST.*.fq).")
+def species(pair_1,pair_2,database,output,threads=8):
+    """- conduct species-level typing"""
+    MIST.species(pair_1,pair_2,database,output,threads=8)
+
+
+
+@cli.command()
 @click.option('-i','--refdir',type=click.Path(exists=True),help=" input folder of reference genomes")
 @click.option('-o','--output',type=click.Path(exists=False, writable=True),help="output folders containing index files")
 def index(refdir,output):
