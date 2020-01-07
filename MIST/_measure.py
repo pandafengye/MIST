@@ -46,7 +46,7 @@ def measure(cluster_output,mismatch_matrix_output,read_length,output):
                 df=p_matrix[j].to_frame()
             if isinstance(p_matrix[j],pd.DataFrame):
                 df=p_matrix[j]
-            P_matrix1[j]=df.max(axis=1)
+            P_matrix1[j]=df.min(axis=1)
         data1 = (0.01**P_matrix1.values)*(0.99**(0-P_matrix1.values))
         P_matrix2 = pd.DataFrame(data1)
         P_matrix2.insert(0, 'reads', P_matrix1.index)
