@@ -16,7 +16,7 @@ MIST contains five modules: index, cluster, species, map, measure.
 This module functions to perform species-level typing and extract species-specific reads for the downstream strain-level typing. 
 ### Command
 ```bash
-$ python MIST_cmd.py species –p 8 -1 test/sampledata/read/test.1.fq -2 test/sampledata/read/test.2.fq –d pangenome.index –o test/result/
+$ python MIST_cmd.py species -p 8 -1 test/sampledata/read/test.1.fq -2 test/sampledata/read/test.2.fq -d pangenome.index -o test/result/
 ```
 ### Options:
   	-p, --thread INTEGER      
