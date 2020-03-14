@@ -7,6 +7,7 @@ Bowtie2 (http://bowtie-bio.sourceforge.net/bowtie2/index.shtml) and FastANI (htt
   ```bash
   $ git clone https://github.com/pandafengye/MIST.git
   $ cd MIST
+  $ pip install -r requirements.txt --default-timeout=1000 # Install related python dependencies
   $ python MIST_cmd.py
   ```
 # Usage
@@ -16,7 +17,7 @@ MIST contains five modules: index, cluster, species, map, measure.
 This module functions to perform species-level typing and extract species-specific reads for the downstream strain-level typing. 
 ### Command
 ```bash
-$ python MIST_cmd.py species -p 8 -1 test/sampledata/read/test.1.fq -2 test/sampledata/read/test.2.fq -d pangenome.index -o test/result/
+$ python MIST_cmd.py species -p 8 -1 test/sampledata/read/test.1.fq -2 test/sampledata/read/test.2.fq -d Pre-built-pangenome/ -o test/result/
 ```
 ### Options:
   	-p, --thread INTEGER      
@@ -48,7 +49,7 @@ The pre-built pan-genome index file is available at http://bacdb.org/Pre-built-p
 
 ### Command
   ```bash
-  $ python MIST_cmd.py cluster -i test/sampledata/ref_dir/ -s 0.95,0.98,0.99 -o test/result/
+  $ python MIST_cmd.py cluster -t 8 -i  test/sampledata/ref_dir/ -s 0.95,0.98,0.99,0.999  -o test/result/
   ```
 ### Options:
     -i, --refdir PATH     
@@ -62,7 +63,7 @@ The pre-built pan-genome index file is available at http://bacdb.org/Pre-built-p
   This module functions to map metagenomic sequences against reference genomes using Bowtie2. 
 ### Command
   ```bash
-  $ python MIST_cmd.py map -p 8 -i test/result/index/ -1 test/sampledata/read/test.1.fq -2 test/sampledata/read/test.2.fq -l 100 -o test/result/ 
+  $ python MIST_cmd.py map -p 8 -i test/result/_MIST_index/ -1 test/sampledata/read/test.1.fq -2 test/sampledata/read/test.2.fq -l 100 -o test/result/
   ```
 ### Options:
       -p, --thread INTEGER      
