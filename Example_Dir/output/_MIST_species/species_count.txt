@@ -1,0 +1,4 @@
+,species,read_count
+0,Escherichia_coli,859
+1,Klebsiella_pneumoniae,3
+2,Salmonella_enterica,10
