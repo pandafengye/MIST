@@ -7,7 +7,7 @@ from numpy import nan
 import matplotlib.pyplot as plt
 from sklearn import datasets,ensemble,naive_bayes
 from sklearn.model_selection import train_test_split
-from sklearn.externals import joblib
+import joblib
 import warnings,datetime
 sys.setrecursionlimit(100000) #
 warnings.filterwarnings('ignore')
