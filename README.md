@@ -6,10 +6,10 @@
 Bowtie2 (http://bowtie-bio.sourceforge.net/bowtie2/index.shtml) and FastANI (https://github.com/ParBLiSS/FastANI) are required to be preinstalled. The locations of their binaries should be included in the environment path ($PATH).
 # Download and install 
   ```bash
-  $ git clone https://github.com/pandafengye/MIST.git
-  $ cd MIST
+  $ git clone https://github.com/pandafengye/MIST.1.1.git
+  $ cd MIST.1.1
   $ pip install -r requirements.txt --default-timeout=1000 # Install related python dependencies
-  $ python MIST_cmd.py
+  $ python MIST.py
   ```
 # Usage
 MIST contains five modules: species, index, cluster, map, subspecies.
