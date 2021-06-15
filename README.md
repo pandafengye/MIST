@@ -1,9 +1,19 @@
 
 # MIST （Metagenomic Intra-Species Typing）
-  MIST is a mmetagenomic intra-species typing tool which is specifically designed for clinical specimens of low pathogen load. Its algorithm has the following three features.1) Based on average nucleotide identity (ANI), reference genomes are clustered into hierarchical levels to resolve the ambiguous definition of “strain”; 2) Maximum likelihood estimation is conducted upon the reads’ mismatch values to infer the compositional abundance. 3) Read ambiguity is used to quantify the abundance uncertainty along with the similarity of reference genomes to specimen’s constituents. Hopefully, it benefits strain-level diagnostics as well as public health epidemiology and surveillance.
+ MIST is a metagenomic intra-species typing tool which is specifically designed for clinical specimens of low pathogen load. Its algorithm has the following three features.
+1) Based on average nucleotide identity (ANI), reference genomes are clustered into hierarchical levels to resolve the ambiguous definition of “strain”; 
+2) Maximum likelihood estimation is conducted upon the reads’ mismatch values to infer the compositional abundance. 
+3) Read ambiguity is used to quantify the abundance uncertainty along with the similarity of reference genomes to specimen’s constituents.
+
+ Hopefully, it benefits strain-level diagnostics as well as public health epidemiology and surveillance.
+
 # Prerequisites
-  MIST pipeline was built and tested in the Intel architectures (x86_64) running Linux/Unix      environment. It may work under other operating systems and have not been tested.
-Bowtie2 (http://bowtie-bio.sourceforge.net/bowtie2/index.shtml) and FastANI (https://github.com/ParBLiSS/FastANI) are required to be preinstalled. The locations of their binaries should be included in the environment path ($PATH).
+Linux system
+
+Python >= 3.6
+
+GCC >= 4.8
+
 # Download and install 
   ```bash
   $ git clone https://github.com/pandafengye/MIST.1.1.git
@@ -34,7 +44,7 @@ $  python MIST.py species -p 8 -1 Example_Dir/input/read/test.1.fq -2 Example_Di
   	-o, --output PATH        
 	output folder which contains: 1) read counts for each pathogen species (_MIST_species_count.txt); 2) reads specific to each pathogen species (_MIST.*.fq).
 ### Tips:
-  The pre-built pan-genome index file is available at http://bacdb.org/Pre-built-pangenome.tgz. 
+  The pre-built pan-genome index file is available at http://bacdb.cn/Pre-built-pangenome.tgz. 
   For the reads specific to each pathogen species (_MIST.*.fq), 0.1x sequencing coverage of bacterial genome (e.g. 5000 100-bp reads for a 5-Mb bacterial genome) is usually sufficient for MIST to do strain-level typing. Too many reads (e.g., > 50000 reads) for the subsequent mapping and maximum likelihood estimation would otherwise cause long running time. Users can extract a subset (5000) of reads with the command such as “head –n 20000 _MIST.*.fq > input.fq”.
 
 ## MIST-Index
@@ -42,7 +52,7 @@ $  python MIST.py species -p 8 -1 Example_Dir/input/read/test.1.fq -2 Example_Di
 genome before each analysis of metagenomics datasets.
 ### Command
   ```bash
-  $ python MIST.py index -i Example_Dir/input/ref_dir/ -o Example_Dir/output/
+  $ python MIST.py index -i Example_Dir/input/ref_dir/ -o Example_Dir/output_1/
   ```
 ### Options: 
     -i, --refdir PATH 
