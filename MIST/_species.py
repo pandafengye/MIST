@@ -1,5 +1,6 @@
 import os
-
+import warnings
+warnings.filterwarnings("ignore")
 
 def species(threads, pair_1, pair_2, database, output):
     if not os.path.exists(output + "/_MIST_species"):
