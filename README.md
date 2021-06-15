@@ -102,5 +102,5 @@ $ python MIST.py subspecies -c Example_Dir/output/_MIST_ref_cluster.csv -m Examp
     output folder in which the result files correspond to each level of cluster. Information of the estimated abundance, 95% CI, P value and similarity are given for each cluster in each file. See example fold ‘test/result/’.
 
 # Tips:
-For common pathogen species, the pre-built matrix of the clustered reference genomes is available at http://bacdb.org/Pre-built-database.tgz. The pre-defined ANI thresholds are 98%, 99%, 99.9%, 99.99%. If other thresholds required, users need to do the clustering steps by themselves using the module ‘cluster’.
+For common pathogen species, the pre-built matrix of the clustered reference genomes is available at http://bacdb.cn/Pre-built-database.tgz. The pre-defined ANI thresholds are 98%, 99%, 99.9%, 99.99%. If other thresholds required, users need to do the clustering steps by themselves using the module ‘cluster’.
 
