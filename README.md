@@ -16,8 +16,8 @@ GCC >= 4.8
 
 # Download and install 
   ```bash
-  $ git clone https://github.com/pandafengye/MIST.1.1.git
-  $ cd MIST.1.1
+  $ git clone https://github.com/pandafengye/MIST.git
+  $ cd MIST
   $ pip install -r requirements.txt --default-timeout=1000 # Install related python dependencies
   $ python MIST.py
   ```
@@ -56,7 +56,7 @@ genome before each analysis of metagenomics datasets.
   ```
 ### Options: 
     -i, --refdir PATH 
-         Path to the reference genome folder; All reference genomes should be in FASTA format and put in the same folder; each file     represents one reference genome, with a *.fa prefix. See the example folder ‘test/sampledata/ref_dir’.
+         Path to the reference genome folder; All reference genomes should be in FASTA format and put in the same folder; each file represents one reference genome, with a *.fa prefix. See the example folder ‘test/sampledata/ref_dir’.
     -o, --output PATH
        Output folder saving the index files for reference genomes. The base name of the index is the same as the reference genome.
  ## MIST-cluster
