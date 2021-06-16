@@ -44,7 +44,7 @@ def cluster(refdir,output,threads,cutoff):
             os.system("cat "+pwd+output+"/_MIST_cluster_sample_Distance | awk -F'\t' '$3>"+str(Co)+"{print}' >> "+pwd+output+"/_MIST_cluster_sample_Distance_Filter")
             data = pd.read_table(pwd+output+"/_MIST_cluster_sample_Distance_Filter", header=None, usecols=[0,1])
             b = []
-            N = data.as_matrix()  # Convert to matrix
+            N = data.values  # Convert to matrix
             for i in range(len(N)):
                 b.append(N[i][0])
                 b.append(N[i][1])
