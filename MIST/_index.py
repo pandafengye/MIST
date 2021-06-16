@@ -1,7 +1,7 @@
 import os
 def index(refdir,output):
     if not os.path.exists(output):
-        os.makedir(output)
+        os.mkdir(output)
     _ROOT = os.path.abspath(os.path.dirname(__file__))
     _ROOT=_ROOT.split('/')
     del(_ROOT[-1])
