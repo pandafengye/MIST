@@ -1,10 +1,8 @@
 import os,re,math
 #from collections import Counter
 def map(indexpath,read_length,output,thread=8,single_end=None,pair_1=None,pair_2=None):
-    if not os.path.exists(output):
-        os.mkdir(output)
     if not os.path.exists(output + "/_MIST_map_alignment/"):
-        os.mkdir(output+ "/_MIST_map_alignment/")
+        os.makedirs(output+ "/_MIST_map_alignment/")
     """Map the fastq file to the reference genome using bowtie2"""
     _ROOT = os.path.abspath(os.path.dirname(__file__))
     _ROOT=_ROOT.split('/')
