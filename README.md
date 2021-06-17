@@ -19,6 +19,7 @@ GCC >= 4.8
   $ git clone https://github.com/pandafengye/MIST.git
   $ cd MIST
   $ pip install -r requirements.txt --default-timeout=1000 # Install related python dependencies
+  $ bash setup.sh
   $ python MIST.py
   ```
 # Usage
