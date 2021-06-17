@@ -1,5 +1,5 @@
 
-# MIST （Metagenomic Intra-Species Typing）
+# MIST (Metagenomic Intra-Species Typing)
  MIST is a metagenomic intra-species typing tool which is specifically designed for clinical specimens of low pathogen load. Its algorithm has the following three features.
 1) Based on average nucleotide identity (ANI), reference genomes are clustered into hierarchical levels to resolve the ambiguous definition of “strain”; 
 2) Maximum likelihood estimation is conducted upon the reads’ mismatch values to infer the compositional abundance. 
@@ -31,7 +31,7 @@ and estimate the abundance by counting the reads mapped to each species. The spe
 typing.
 ### Command
 ```bash
-$  python MIST.py species -p 8 -1 Example_Dir/input/read/test.1.fq -2 Example_Dir/input/read/test.2.fq -d Pre-built-pangenome/ -o Example_Dir/output/
+$  python MIST.py species --thread 8 --pair_1 Example_Dir/input/read/test.1.fq --pair_2 Example_Dir/input/read/test.2.fq --database Pre-built-pangenome/ --output Example_Dir/output/
 ```
 ### Options:
   	-p, --thread INTEGER      
@@ -53,7 +53,7 @@ $  python MIST.py species -p 8 -1 Example_Dir/input/read/test.1.fq -2 Example_Di
 genome before each analysis of metagenomics datasets.
 ### Command
   ```bash
-  $ python MIST.py index -i Example_Dir/input/ref_dir/ -o Example_Dir/output_1/
+  $ python MIST.py index --refdir Example_Dir/input/ref_dir/ --output Example_Dir/output/
   ```
 ### Options: 
     -i, --refdir PATH 
@@ -65,9 +65,10 @@ genome before each analysis of metagenomics datasets.
 
 ### Command
   ```bash
-  $ python MIST.py cluster -t 8 -i Example_Dir/input/ref_dir/ -s 0.98,0.99,0.999 -o Example_Dir/output/
+  $ python MIST.py cluster --threads 8 --refdir Example_Dir/input/ref_dir/ --cutoff 0.98,0.99,0.999 --output Example_Dir/output/
   ```
 ### Options:
+    -t, --threads INTEGER  Number of threads for ANI
     -i, --refdir PATH     
     input folder of reference genomes
     -o, --output PATH    
@@ -79,7 +80,7 @@ genome before each analysis of metagenomics datasets.
   This module functions to map metagenomic sequences against reference genomes using Bowtie2. 
 ### Command
   ```bash
-  $ python MIST.py map -p 8 -i Example_Dir/output/_MIST_index/ -1 Example_Dir/input/read/test.1.fq -2 Example_Dir/input/read/test.2.fq -l 200 -o Example_Dir/output/
+  $ python MIST.py map --thread 8 --indexpath Example_Dir/output/_MIST_index/ --pair_1 Example_Dir/input/read/test.1.fq --pair_2 Example_Dir/input/read/test.2.fq --read_length 200 --output Example_Dir/output/
   ```
 ### Options:
       -p, --thread INTEGER      
@@ -100,7 +101,7 @@ genome before each analysis of metagenomics datasets.
   This module functions to measure the relative abundance of each cluster in the metagenomics dataset, along with similarity and reliability assessment.
 ### Command
 ```bash
-$ python MIST.py subspecies -c Example_Dir/output/_MIST_ref_cluster.csv -m Example_Dir/output/_MIST_map_Mismatch_matrix.csv -l 200 -o Example_Dir/output/
+$ python MIST.py subspecies --cluster_output Example_Dir/output/_MIST_ref_cluster.csv --mismatch_matrix_output Example_Dir/output/_MIST_map_Mismatch_matrix.csv --read_length 200 --output Example_Dir/output/
 ```
 ### Options:
     -c, --cluster_output PATH  
