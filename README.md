@@ -128,9 +128,9 @@ Alternatively, users can directly use the current pre-built database, which is d
 -	Staphylococcus aureus
 -	Streptococcus pneumoniae
 
->	Pre-built-pangenome: This folder is used in the “species” module, and include bowtie-indexed pan-genomes of the above 14 bacterial species.
->	Pre-built-clustering: This folder contains the clustering files (obtained from the “cluster” module) for the above 14 pathogens and is used in the “subspecies” module. For each of these species, their complete genomes available in Genbank database have been downloaded and clustered by the “cluster” module. These clustering files can only be used in combination with along with the bowtie-indexed reference genomes below.
->	Pre-built bowtie-index: the bowtie-indexed reference genomes that correspond to the genomes used for constructing the above pre-built clustering files. These pre- built bowtie index files are used in the “map” module and are available at the following addresses:
+1)	Pre-built-pangenome: This folder is used in the “species” module, and include bowtie-indexed pan-genomes of the above 14 bacterial species.
+2)	Pre-built-clustering: This folder contains the clustering files (obtained from the “cluster” module) for the above 14 pathogens and is used in the “subspecies” module. For each of these species, their complete genomes available in Genbank database have been downloaded and clustered by the “cluster” module. These clustering files can only be used in combination with along with the bowtie-indexed reference genomes below.
+3)	Pre-built bowtie-index: the bowtie-indexed reference genomes that correspond to the genomes used for constructing the above pre-built clustering files. These pre-built bowtie index files are used in the “map” module and are available at the following addresses:
 -	[Acinetobacter_baumannii](http://bacdb.cn/Acinetobacter_baumannii_MIST_index.tgz)
 -	[Campylobacter_jejuni](http://bacdb.cn/Campylobacter_jejuni_MIST_index.tgz)
 -	[Clostriodioides_difficile](http://bacdb.cn/Clostriodioides_difficile_MIST_index.tgz)
@@ -145,6 +145,7 @@ Alternatively, users can directly use the current pre-built database, which is d
 -	[Salmonelle_enterica](http://bacdb.cn/Salmonelle_enterica_MIST_index.tgz)
 -	[Staphylococcus_aureus](http://bacdb.cn/Staphylococcus_aureus_MIST_index.tgz)
 -	[Streptococcus_pneumoniae]( http://bacdb.cn/Streptococcus_pneumoniae_MIST_index.tgz)
+
 Note: uncompress (tar zxvf xxx_MIST_index.tgz) before use.
 
 
