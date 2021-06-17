@@ -46,7 +46,7 @@ $  python MIST.py species --thread 8 --pair_1 Example_Dir/input/read/test.1.fq -
 	output folder which contains: 1) read counts for each pathogen species (_MIST_species_count.txt); 2) reads specific to each pathogen species (_MIST.*.fq).
 ### Tips:
   The pre-built pan-genome index file is available at http://bacdb.cn/Pre-built-pangenome.tgz. 
-  For the reads specific to each pathogen species (_MIST.*.fq), 0.1x sequencing coverage of bacterial genome (e.g. 5000 100-bp reads for a 5-Mb bacterial genome) is usually sufficient for MIST to do strain-level typing. Too many reads (e.g., > 50000 reads) for the subsequent mapping and maximum likelihood estimation would otherwise cause long running time. Users can extract a subset (5000) of reads with the command such as “head –n 20000 _MIST.*.fq > input.fq”.
+  For the reads specific to each pathogen species (\_MIST.\*.fq), 0.1x sequencing coverage of bacterial genome (e.g. 5000 100-bp reads for a 5-Mb bacterial genome) is usually sufficient for MIST to do strain-level typing. Too many reads (e.g., > 50000 reads) for the subsequent mapping and maximum likelihood estimation would otherwise cause long running time. Users can extract a subset (5000) of reads with the command such as "head –n 20000 _MIST.*.fq > input.fq".
 
 ## MIST-Index
   This module functions to index the reference genomes with Bowtie2 indexer (bowtie2-build). Once the reference genomes are indexed, users will not need to re-index the
@@ -114,22 +114,7 @@ $ python MIST.py subspecies --cluster_output Example_Dir/output/_MIST_ref_cluste
     output folder in which the result files correspond to each level of cluster. Information of the estimated abundance, 95% CI, P value and similarity are given for each cluster in each file. See example fold ‘test/result/’.
 # Availability of pre-built database
 Users can customize their own database by 1) downloading reference genomes of a certain species in fasta format; 2) cluster these reference genomes by the “cluster” module; and 3) bowtie-index these reference genomes by the “index” module.
-Alternatively, users can directly use the current pre-built database, which is developed for the following 14 bacterial species:
--	Acinetobacter baumannii
--	Campylobacter jejuni
--	Clostriodioides difficile
--	Enterococcus faecalis
--	Enterococcus faecium
--	Escherichia coli
--	Haemophilus influenza
--	Klebsiella pneumoniae
--	Legionella pneumophila
--	Listeria monocytogenes
--	Mycobacterium tuberculosis
--	Salmonelle enterica
--	Staphylococcus aureus
--	Streptococcus pneumoniae
-
+Alternatively, users can directly use the current pre-built database, which is developed for the following 14 bacterial species.
 1)	Pre-built-pangenome: This folder is used in the “species” module, and include bowtie-indexed pan-genomes of the above 14 bacterial species.
 2)	Pre-built-clustering: This folder contains the clustering files (obtained from the “cluster” module) for the above 14 pathogens and is used in the “subspecies” module. For each of these species, their complete genomes available in Genbank database have been downloaded and clustered by the “cluster” module. These clustering files can only be used in combination with along with the bowtie-indexed reference genomes below.
 3)	Pre-built bowtie-index: the bowtie-indexed reference genomes that correspond to the genomes used for constructing the above pre-built clustering files. These pre-built bowtie index files are used in the “map” module and are available at the following addresses:
