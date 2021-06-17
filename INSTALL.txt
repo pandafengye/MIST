@@ -4,8 +4,8 @@ Prerequisites:
 - GCC >= 4.8
 
 Download and install:
-$ wget  https://master.dl.sourceforge.net/project/mist-1-1/MIST.1.1.zip
-$ unzip MIST.1.1.zip
-$ cd MIST.1.1
+$ git clone https://github.com/pandafengye/MIST.git
+$ cd MIST
 $ pip install --default-timeout=1000 -r requirements.txt
+$ bash setup.sh
 $ bash test.sh
