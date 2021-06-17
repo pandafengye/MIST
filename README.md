@@ -110,7 +110,41 @@ $ python MIST.py subspecies -c Example_Dir/output/_MIST_ref_cluster.csv -m Examp
     read length
     -o, --output PATH        
     output folder in which the result files correspond to each level of cluster. Information of the estimated abundance, 95% CI, P value and similarity are given for each cluster in each file. See example fold ‘test/result/’.
+# Availability of pre-built database
+Users can customize their own database by 1) downloading reference genomes of a certain species in fasta format; 2) cluster these reference genomes by the “cluster” module; and 3) bowtie-index these reference genomes by the “index” module.
+Alternatively, users can directly use the current pre-built database, which is developed for the following 14 bacterial species:
+-	Acinetobacter baumannii
+-	Campylobacter jejuni
+-	Clostriodioides difficile
+-	Enterococcus faecalis
+-	Enterococcus faecium
+-	Escherichia coli
+-	Haemophilus influenza
+-	Klebsiella pneumoniae
+-	Legionella pneumophila
+-	Listeria monocytogenes
+-	Mycobacterium tuberculosis
+-	Salmonelle enterica
+-	Staphylococcus aureus
+-	Streptococcus pneumoniae
 
-# Tips:
-For common pathogen species, the pre-built matrix of the clustered reference genomes is available at http://bacdb.cn/Pre-built-database.tgz. The pre-defined ANI thresholds are 98%, 99%, 99.9%, 99.99%. If other thresholds required, users need to do the clustering steps by themselves using the module ‘cluster’.
+>	Pre-built-pangenome: This folder is used in the “species” module, and include bowtie-indexed pan-genomes of the above 14 bacterial species.
+>	Pre-built-clustering: This folder contains the clustering files (obtained from the “cluster” module) for the above 14 pathogens and is used in the “subspecies” module. For each of these species, their complete genomes available in Genbank database have been downloaded and clustered by the “cluster” module. These clustering files can only be used in combination with along with the bowtie-indexed reference genomes below.
+>	Pre-built bowtie-index: the bowtie-indexed reference genomes that correspond to the genomes used for constructing the above pre-built clustering files. These pre- built bowtie index files are used in the “map” module and are available at the following addresses:
+-	[Acinetobacter_baumannii](http://bacdb.cn/Acinetobacter_baumannii_MIST_index.tgz)
+-	[Campylobacter_jejuni](http://bacdb.cn/Campylobacter_jejuni_MIST_index.tgz)
+-	[Clostriodioides_difficile](http://bacdb.cn/Clostriodioides_difficile_MIST_index.tgz)
+-	[Enterococcus_faecalis](http://bacdb.cn/Enterococcus_faecalis_MIST_index.tgz)
+-	[Enterococcus_faecium](http://bacdb.cn/Enterococcus_faecium_MIST_index.tgz)
+-	[Escherichia_coli](http://bacdb.cn/Escherichia_coli_MIST_index.tgz)
+-	[Haemophilus_influenzae](http://bacdb.cn/Haemophilus_influenzae_MIST_index.tgz)
+-	[Klebsiella_pneumoniae](http://bacdb.cn/Klebsiella_pneumoniae_MIST_index.tgz)
+-	[Legionella_pneumophila](http://bacdb.cn/Legionella_pneumophila_MIST_index.tgz)
+-	[Listeria_monocytogenes](http://bacdb.cn/Listeria_monocytogenes_MIST_index.tgz)
+-	[Mycobacterium_tuberculosis](http://bacdb.cn/Mycobacterium_tuberculosis_MIST_index.tgz)
+-	[Salmonelle_enterica](http://bacdb.cn/Salmonelle_enterica_MIST_index.tgz)
+-	[Staphylococcus_aureus](http://bacdb.cn/Staphylococcus_aureus_MIST_index.tgz)
+-	[Streptococcus_pneumoniae]( http://bacdb.cn/Streptococcus_pneumoniae_MIST_index.tgz)
+Note: uncompress (tar zxvf xxx_MIST_index.tgz) before use.
+
 
