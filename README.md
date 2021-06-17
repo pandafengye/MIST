@@ -96,7 +96,7 @@ genome before each analysis of metagenomics datasets.
     read length
       -o, --output PATH        
     output folder for mismatch matrix file and alignment output files. A folder _MIST_map_alignment, which contains the mapped .sam files corresponding to each reference genome; a file _MIST_map_Mismatch_matrix.csv, which contains the number of mismatches derived from each read mapping against each reference genome. See example fold ‘test/result/’.
-## MIST- measure
+## MIST-measure
   This module functions to measure the relative abundance of each cluster in the metagenomics dataset, along with similarity and reliability assessment.
 ### Command
 ```bash
