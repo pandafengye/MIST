@@ -1,4 +1,5 @@
-import os,math,re,sys,datetime,heapq
+import os,math,re,sys,datetime,heapq,joblib
+from sklearn.externals import joblib
 from collections import defaultdict
 import pandas as pd
 import numpy as np
@@ -7,7 +8,6 @@ from numpy import nan
 import matplotlib.pyplot as plt
 from sklearn import datasets,ensemble,naive_bayes
 from sklearn.model_selection import train_test_split
-import joblib
 import warnings,datetime
 sys.setrecursionlimit(100000) #
 warnings.filterwarnings('ignore')
@@ -127,8 +127,10 @@ def subspecies(cluster_output,mismatch_matrix_output,read_length,output):
                 # Load model files and generate model objects
                 new_model1 = joblib.load(_ROOT+"/STD_model.pkl")
                 new_pred_data1 = [[Similarity_all[i], data.iloc[a,3], data.iloc[a,1]]]
+                #print(new_pred_data1)
                 # Use the generated model to predict new samples
                 test_result1 = new_model1.predict(new_pred_data1)
+               # print(test_result1)
                 if test_result1[0]>1:
                     test_result1[0]=1
                     #print(test_result1)
@@ -298,7 +300,7 @@ def subspecies(cluster_output,mismatch_matrix_output,read_length,output):
             for key in dict_:
     #             Filter_top.append(dict_[key])
 #                 print(list(map(str,dict_[key])))
-                df=data.ix[list(map(str,dict_[key])), :]
+                df=data.loc[list(map(str,dict_[key])), :]
                 if df.shape[0]>=5: 
                     df.sort_values(by="Total_Min" , ascending=False,inplace=True)
                     df1=df.iloc[:10]#;print(df1)
