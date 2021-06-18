@@ -30,7 +30,7 @@ and estimate the abundance by counting the reads mapped to each species. The spe
 typing.
 ### Command
 ```bash
-$  python MIST.py species --thread 8 --pair_1 Example_Dir/input/read/test.1.fq --pair_2 Example_Dir/input/read/test.2.fq --database Pre-built-pangenome/ --output Example_Dir/output/
+$  python MIST.py species --threads 8 --pair_1 Example_Dir/input/read/test.1.fq --pair_2 Example_Dir/input/read/test.2.fq --database Pre-built-pangenome/ --output Example_Dir/output/
 ```
 ### Options:
   	-p, --thread INTEGER      
