@@ -33,7 +33,7 @@ typing.
 $  python MIST.py species --threads 8 --pair_1 Example_Dir/input/read/test.1.fq --pair_2 Example_Dir/input/read/test.2.fq --database Pre-built-pangenome/ --output Example_Dir/output/
 ```
 ### Options:
-  	-p, --thread INTEGER      
+  	-p, --threads INTEGER      
 	Number of threads for Bowtie2 (default: 8)
   	-1, --pair_1 PATH         
 	input fq file with #1 mate, paired with pair_2 file
