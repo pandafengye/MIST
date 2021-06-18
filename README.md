@@ -25,7 +25,7 @@ GCC >= 4.8
 MIST contains five modules: species, index, cluster, map, subspecies.
 
 ## MIST-species
-This module functions to perform species-level typing. MIST calls Bowtie2 to map the user’s mNGS reads (in fastq format) against the pan-genomes of each bacterial species
+This module functions to perform species-level typing. MIST calls Bowtie2 to map the user’s mNGS reads (in .fastq format) against the pan-genomes of each bacterial species
 and estimate the abundance by counting the reads mapped to each species. The species-specific reads are extracted from the resulting SAM file for the downstream strain-level
 typing.
 ### Command
