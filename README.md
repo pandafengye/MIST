@@ -79,10 +79,10 @@ genome before each analysis of metagenomics datasets.
   This module functions to map metagenomic sequences against reference genomes using Bowtie2. 
 ### Command
   ```bash
-  $ python MIST.py map --thread 8 --indexpath Example_Dir/output/_MIST_index/ --pair_1 Example_Dir/input/read/test.1.fq --pair_2 Example_Dir/input/read/test.2.fq --read_length 200 --output Example_Dir/output/
+  $ python MIST.py map --threads 8 --indexpath Example_Dir/output/_MIST_index/ --pair_1 Example_Dir/input/read/test.1.fq --pair_2 Example_Dir/input/read/test.2.fq --read_length 200 --output Example_Dir/output/
   ```
 ### Options:
-      -p, --thread INTEGER      
+      -p, --threads INTEGER      
     Number of threads for Bowtie2 (default: 8)
       -i, --indexpath PATH       
     input folder of index files for reference genomes; produced by MIST-index module.
