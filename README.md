@@ -10,7 +10,7 @@
 # Prerequisites
 Linux system
 
-Python >= 3.6
+Python = 3.6
 
 GCC >= 4.8
 
