@@ -3,10 +3,8 @@ import warnings
 warnings.filterwarnings("ignore")
 
 def species(threads, pair_1, pair_2, database, output):
-    if not os.path.exists(output + "/_MIST_species"):
-        os.mkdir(output + "/_MIST_species")
     if not os.path.exists(output + "/_MIST_species/alignment/"):
-        os.mkdir(output + "/_MIST_species/alignment/")
+        os.makedirs(output + "/_MIST_species/alignment/")
     for i, j, k in os.walk(database):
         # print(k[0].split('.')[0]plit('.')[0]
         index = k[0].split('.')[0]
