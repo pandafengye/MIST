@@ -15,7 +15,10 @@ Python = 3.6
 GCC >= 4.8
 
 # Download and install 
+## Option 1 (development version)
   ```bash
+  $ conda create -n MIST -c conda-forge -c bioconda "python=3.6"
+  $ conda activate MIST
   $ git clone https://github.com/pandafengye/MIST.git
   $ cd MIST
   $ pip install -r requirements.txt --default-timeout=1000 # Install related python dependencies
