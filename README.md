@@ -15,7 +15,7 @@ Python = 3.6
 GCC >= 4.8
 
 # Download and install 
-## Option 1 (development version)
+
   ```bash
   $ conda create -n MIST -c conda-forge -c bioconda "python=3.6"
   $ conda activate MIST
