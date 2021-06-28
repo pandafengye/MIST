@@ -133,7 +133,7 @@ Alternatively, users can directly use the current pre-built database, which is d
 -	[Mycobacterium_tuberculosis](http://bacdb.cn/Mycobacterium_tuberculosis_MIST_index.tgz)
 -	[Salmonelle_enterica](http://bacdb.cn/Salmonelle_enterica_MIST_index.tgz)
 -	[Staphylococcus_aureus](http://bacdb.cn/Staphylococcus_aureus_MIST_index.tgz)
--	[Streptococcus_pneumoniae]( http://bacdb.cn/Streptococcus_pneumoniae_MIST_index.tgz)
+-	[Streptococcus_pneumoniae](http://bacdb.cn/Streptococcus_pneumoniae_MIST_index.tgz)
 
 Note: uncompress (tar zxvf xxx_MIST_index.tgz) before use.
 
