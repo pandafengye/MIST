@@ -131,7 +131,7 @@ Alternatively, users can directly use the current pre-built database, which is d
 -	[Legionella_pneumophila](http://bacdb.cn/Legionella_pneumophila_MIST_index.tgz)
 -	[Listeria_monocytogenes](http://bacdb.cn/Listeria_monocytogenes_MIST_index.tgz)
 -	[Mycobacterium_tuberculosis](http://bacdb.cn/Mycobacterium_tuberculosis_MIST_index.tgz)
--	[Salmonelle_enterica](http://bacdb.cn/Salmonelle_enterica_MIST_index.tgz)
+-	[Salmonella_enterica](http://bacdb.cn/Salmonella_enterica_MIST_index.tgz)
 -	[Staphylococcus_aureus](http://bacdb.cn/Staphylococcus_aureus_MIST_index.tgz)
 -	[Streptococcus_pneumoniae](http://bacdb.cn/Streptococcus_pneumoniae_MIST_index.tgz)
 
