@@ -5,7 +5,7 @@
 2) Maximum likelihood estimation is conducted upon the reads’ mismatch values to infer the compositional abundance.
 3) Read ambiguity is used to quantify the abundance uncertainty along with the similarity of reference genomes to specimen’s constituents.
 
- Hopefully, it benefits strain-level diagnostics as well as public health epidemiology and surveillance.
+ Hopefully, it benefits strain-level diagnostics of bacterial infections as well as public health epidemiology and surveillance.
 
 # Prerequisites
 Linux system
