@@ -54,7 +54,7 @@ $  python MIST.py species --threads 8 --pair_1 Example_Dir/input/read/test.1.fq 
   The pre-built pan-genome index file is available at http://bacdb.cn/Pre-built-pangenome.tgz. 
   For the reads specific to each pathogen species (\_MIST.\*.fq), 0.1x sequencing coverage of bacterial genome (e.g. 5000 100-bp reads for a 5-Mb bacterial genome) is usually sufficient for MIST to do strain-level typing. Too many reads (e.g., > 50000 reads) for the subsequent mapping and maximum likelihood estimation would otherwise cause long running time. Users can extract a subset (5000) of reads with the command such as "head –n 20000 _MIST.*.fq > input.fq".
 
-## MIST-Index
+## MIST-index
   This module functions to index the reference genomes with Bowtie2 indexer (bowtie2-build). Once the reference genomes are indexed, users will not need to re-index the
 genome before each analysis of metagenomics datasets.
 ### Command
