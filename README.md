@@ -17,7 +17,7 @@ GCC >= 4.8
 # Download and install 
 
   ```bash
-  $ conda create -n MIST -c conda-forge -c bioconda "python=3.6"
+  $ conda create -n MIST -c conda-forge -c bioconda python=3.6 fastANI bowtie2
   $ conda activate MIST
   $ git clone https://github.com/pandafengye/MIST.git
   $ cd MIST
