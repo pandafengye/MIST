@@ -9,9 +9,13 @@
 
 # Prerequisites
 Linux system
+
 Python = 3.6
+
 GCC >= 4.8
+
 Bowtie 2
+
 FastANI
 
 # Download and install 
