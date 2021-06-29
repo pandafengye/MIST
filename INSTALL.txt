@@ -1,0 +1,12 @@
+Prerequisites:
+- Linux system
+- Python >= 3.6
+- GCC >= 4.8
+
+Download and install:
+$ conda create -n MIST -c conda-forge -c bioconda "python=3.6" fastANI bowtie2
+$ conda activate MIST
+$ git clone https://github.com/pandafengye/MIST.git
+$ cd MIST
+$ pip install --default-timeout=1000 -r requirements.txt
+$ python MIST.py
