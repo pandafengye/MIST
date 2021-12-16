@@ -123,7 +123,7 @@ $  python MIST.py species --threads 8 --pair_1 Example_Dir/input/read/example_da
   This module functions to map metagenomic sequences against reference genomes using Bowtie2, and to measure the relative abundance of each cluster in the metagenomics dataset, along with similarity and reliability assessment.
 ### Command
   ```bash
-  $ python MIST.py strain --threads 8 --indexpath Example_Dir/output/_MIST_index/ --cluster_output Example_Dir/output/_MIST_ref_cluster.csv --pair_1 Example_Dir/input/read/test.1.fq --pair_2 Example_Dir/input/read/test.2.fq --read_length 200 --output Example_Dir/output/
+  $ python MIST.py strain --threads 8 --indexpath Example_Dir/output/_MIST_index/ --cluster_output Example_Dir/output/_MIST_ref_cluster.csv --pair_1 Example_Dir/input/read/example_data1.1.fq --pair_2 Example_Dir/input/read/example_data1.2.fq --read_length 200 --output Example_Dir/output/
   ```
 ### Options:
       -p, --threads INTEGER      
@@ -213,16 +213,17 @@ $ python MIST.py cluster --threads 8 --refdir Example_Dir/input/ref_dir/ --cutof
 ```
 In the output clustering file `Example_Dir/output/_MIST_ref_cluster.csv`, you will see that, at the 98% ANI level, the genome CP002729.fa, CU928160.fa, CP017979.fa and AP012030.fa belong to the same cluster; but at the 99% level, CU928160.fa splits and forms its independent cluster.
 
-             0.98  0.99  0.999
-CP002729.fa     0     1      2
-CU928160.fa     0     0      0
-CP017979.fa     0     1      1
-AP012030.fa     0     1      1
-CU928163.fa     1     2      3（待更新）
+Genome | 0.98 | 0.99 | 0.999
+---   | --- | --- | ---
+`CP002729.fa`   | 0                   | 1            | 2
+`CU928160.fa`  | 0 | 0            | 0
+`CP017979.fa`  | 0         | 1 | 1
+`AP012030.fa`   | 0                        | 1 | 1
+`CU928163.fa` | 1                      | 2          | 3
 
-* __Step 3:__ Run the module `Strain` using the prepared `outputdir` and `_MIST_ref_cluster.csv`
+* __Step 3:__ Run the module `Strain` using the prepared `output` directory and `_MIST_ref_cluster.csv`.
 ```bash
-$ python MIST.py strain xxxxxxxxx
+$ python MIST.py strain --threads 8 --indexpath Example_Dir/output/_MIST_index/ --cluster_output Example_Dir/output/_MIST_ref_cluster.csv --pair_1 Example_Dir/input/read/example_data1.1.fq --pair_2 Example_Dir/input/read/example_data1.2.fq --read_length 200 --output Example_Dir/output/
 ```
 
 ### __Example 3: Identification of a novel strain by MIST__
@@ -232,13 +233,14 @@ $ python MIST.py strain --threads 8 --indexpath _MIST_index/ --pair1 example2.1.
 ```
 Where example2.1.fq and example2.2.fq are the paired Shigella reads. In the _MIST_0.98_xxxout, it shows the reads are assigned to cluster xx and xxx, with a similarity of xx and xx. Because this estimate is performed at the 98% ANI level, the query reads and the assigned cluster should have a similarity above 98%. Hence, a similarity below 0.98 indicates that the query reads actually do not belong to the clusters but represent a novel one. Notably, this speculation is based on the hypothesis that the sequencing errors are so few that can be ignored, since a low similarity can also result from high rate of sequencing errors.
 
-Number,Cluster,Abundance,Unique_best_reads,Shared_best_reads,Similarity
-0,0,0.8485,0,434,0.755
-1,1,0.1515,300,-103,0.5036（待更新）
+Number | Cluster | Abundance | Unique_best_reads | Shared_best_reads | Similarity
+---   | --- | --- | --- | --- | ---
+`0`   | 0 | 0.8485 | 0 | 434 | 0.755
+`1`  | 1 | 0.1515 | 300 | -103 | 0.5036
 
 ## FAQ and miscellaneous tips
-* How long does it take to process a mNGS sample?
+* How long does it take to process a mNGS sample?<br>
 MIST is thorough and accurate, but not particularly fast. The MIST-measure step of the pipeline can take a while to complete. Two main factors influence the running time: the number of reads (more reads take longer to align) and the size of the pre-built database (i.e., the number of reference genomes). By default the module `strain` uses 8 threads only, but using more threads (with the --threads option) may speed up the calculation. 
 
-* Does MIST support the data from long sequencing platform, i.e., Oxford Nanopore?
+* Does MIST support the data from long sequencing platform, i.e., Oxford Nanopore?<br>
 To our knowledge, genetic differences across strains are mostly represented in strain-specific indel regions and SNPs. Long-read sequencing may well address the former, but calls SNPs poorly with a limited sequencing depth, in particular for mNGS dataset which is usually characterized by an extremely low bacterial load. We are quite confident of the future of long-read sequencing. And MIST can be quite easily adjusted from short-read sequencing mode to long-read sequencing as its algorithm is relatively independent from the sequencing technology.
