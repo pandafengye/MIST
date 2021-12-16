@@ -19,7 +19,7 @@ MIST contains four modules: Species, Cluster, Index, Strain. Its workflow is dep
 
 <p align="center"><img src="https://github.com/pandafengye/MIST/blob/master/Pipeline.png" alt="workflow_small"  width="800">
 
-__Note: Red box, the module "Species"; yellow box, the modules "Index" and "Cluster"; purple box, the module "Strain".__
+__Note: Red box, the module `Species`; yellow box, the modules `Index` and `Cluster`; purple box, the module `Strain`.__
 
 ## Requirements
 ### Software
@@ -32,7 +32,7 @@ __Note: Red box, the module "Species"; yellow box, the modules "Index" and "Clus
 
 ### Pre-built database
 * Pre-built-pangenome: This folder is used in the “species” module, which include bowtie-indexed pan-genomes of 14 bacterial species (listed below).
-* Pre-built bowtie-indexed reference genomes: For each species, their complete genomes deposited from NCBI Genbank database are downloaded and are bowtie-indexed with the module “index”. These pre-built bowtie index files are used in combination with the pre-built clustering files in the module “strain”.
+* Pre-built bowtie-indexed reference genomes: For each species, their complete genomes deposited from NCBI Genbank database are downloaded and are Bowtie-indexed with the module `index`. These pre-built bowtie index files are used in combination with the pre-built clustering files in the module `strain`.
    * [Acinetobacter_baumannii](http://bacdb.cn/Acinetobacter_baumannii_MIST_index.tgz)
    * [Campylobacter_jejuni](http://bacdb.cn/Campylobacter_jejuni_MIST_index.tgz)
    * [Clostriodioides_difficile](http://bacdb.cn/Clostriodioides_difficile_MIST_index.tgz)
@@ -48,12 +48,12 @@ __Note: Red box, the module "Species"; yellow box, the modules "Index" and "Clus
    * [Staphylococcus_aureus](http://bacdb.cn/Staphylococcus_aureus_MIST_index.tgz)
    * [Streptococcus_pneumoniae](http://bacdb.cn/Streptococcus_pneumoniae_MIST_index.tgz)
 
-* Pre-built-clustering files: This folder contains the clustering files (obtained from the module “cluster”) for the 14 pathogens and is used in the module “strain”. Same as above, these clustering files can only be used in combination with the bowtie-indexed reference genomes.
+* Pre-built-clustering files: This folder contains the clustering files (obtained from the module `cluster`) for the 14 pathogens and is used in the module `strain`. Same as above, these clustering files can only be used in combination with the bowtie-indexed reference genomes.
 
 __Note:__ In additional to the pre-built database above, you can customize your own database by the following steps:
    * Downloading reference genomes of a certain species in FASTA format.
-   * Cluster these reference genomes by the “cluster” module.
-   * Bowtie-index these reference genomes by the “index” module.
+   * Cluster these reference genomes by the `cluster` module.
+   * Bowtie-index these reference genomes by the `index` module.
 
 
 ## Installation
@@ -66,10 +66,10 @@ __Note:__ In additional to the pre-built database above, you can customize your 
   $ python MIST.py # Test install
   ```
 ## Usage
-MIST contains four modules: __index__, __cluster__, __species__ and __strain__.
+MIST contains four modules: __`index`__, __`cluster`__, __`species`__ and __`strain`__.
 
 ### MIST-index
-  This module functions to index the reference genomes with Bowtie2 indexer (bowtie2-build). Once the reference genomes are indexed, users will not need to re-index the
+  This module functions to index the reference genomes with Bowtie2 indexer (Bowtie2-build). Once the reference genomes are indexed, users will not need to re-index the
 genome before each analysis of metagenomics datasets.
 ### Command
   ```bash
@@ -123,7 +123,7 @@ $  python MIST.py species --threads 8 --pair_1 Example_Dir/input/read/example_da
   This module functions to map metagenomic sequences against reference genomes using Bowtie2, and to measure the relative abundance of each cluster in the metagenomics dataset, along with similarity and reliability assessment.
 ### Command
   ```bash
-  $ python MIST.py strain --threads 8 --indexpath Example_Dir/output/_MIST_index/ --cluster_output Example_Dir/output/_MIST_ref_cluster.csv --pair_1 Example_Dir/input/read/example_data1.1.fq --pair_2 Example_Dir/input/read/example_data1.2.fq --read_length 200 --output Example_Dir/output/
+  $ python MIST.py strain --threads 8 --indexpath Example_Dir/output/_MIST_index/ --cluster_output Example_Dir/output/_MIST_ref_cluster.csv --pair_1 Example_Dir/input/read/example_data1.1.fq --pair_2 Example_Dir/input/read/example_data1.2.fq --read_length 200 --genome_size 5000000 --output Example_Dir/output/
   ```
 ### Options:
       -p, --threads INTEGER      
@@ -178,7 +178,7 @@ No. | Species | Read count
 
 * __Step 2: Strain-level typing.__ We need to first download the pre-built Bowtie-indexed E. coli reference genomes and the pre-built E. coli clustering files, and run the module `Strain`. 
 ```bash
-python MIST.py strain --threads 8 --indexpath Escherichia_coli_MIST_index/ --single reads  _MIST.Escherichia_coli.fq --read_length 100 --cluster_output Escherichia_coli.MIST_ref_cluster.csv --genome_size 5000000--output Example_Dir/output/
+python MIST.py strain --threads 8 --indexpath Escherichia_coli_MIST_index/ --single reads  _MIST.Escherichia_coli.fq --read_length 100 --cluster_output Escherichia_coli.MIST_ref_cluster.csv --genome_size 5000000 --output Example_Dir/output/
 ```
 The input file `_MIST.Escherichia_coli.fq` is derived from `Step 1`.
 The input clustering file `Escherichia_coli.MIST_ref_cluster.csv` looks like this, in which each reference genome (each row) will be assigned to a certain cluster at a certain ANI threshold (e.g., `0.98`, `0.99` and `0.999`).
@@ -191,7 +191,7 @@ Strain | 0.98 | 0.99 | 0.999
 `AE014075.fa`   | 1                        | 9 | 2
 `AM946981.fa` | 0                      | 2          | 125
 
-In the output folder `Example_Dir/output/`, the most important result files `_MIST_0.98_measure.csv`, `_MIST_0.99_measure.csv`, and `_MIST_0.999_measure.csv` correspond to the ANI levels listed in the clustering file. In the `_MIST_0.999_measure.csv`, for example, we can see that there are two clusters in the query reads, with cluster x accounting for ??% and cluster x accounting  for ??%. The column `unique best reads` and `shared best reads` mean maximum mapping score is unique to this cluster and maximum mapping score may also appear in other clusters. The average similarity of these reads against the reference genome of the clusters is listed in the column `similarity`. The coverage is calculated based the number of the `best` reads and the input genome size.
+In the output folder `Example_Dir/output/`, the most important result files `_MIST_0.98_measure.csv`, `_MIST_0.99_measure.csv`, and `_MIST_0.999_measure.csv` correspond to the ANI levels listed in the clustering file. In the `_MIST_0.999_measure.csv`, for example, we can see that there are two clusters in the query reads, with cluster x accounting for ??% and cluster x accounting  for ??%. The column `unique best reads` and `shared best reads` mean maximum mapping score is unique to this cluster and maximum mapping score may also appear in other clusters. The average similarity of these reads against the reference genome of the clusters is listed in the column `similarity`. The coverage is calculated based the number of the best reads and the input genome size.
 
 Cluster | Abundance | Unique_best_reads | Shared_best_reads | Similarity（待更新）
 ---   | --- | --- | --- | ---
@@ -229,7 +229,7 @@ $ python MIST.py strain --threads 8 --indexpath Example_Dir/output/_MIST_index/ 
 ### __Example 3: Identification of a novel strain by MIST__
 Occasionally the strain in the clinical samples is not represented by the database, which we call a `novel` strain. Under such circumstance, MIST may still assign it to a certain cluster in the database, but you can predict if there is a `novel` strain based on the similarity provided by the output. In this example, we use the query reads derived from Shigella dysenteriae. This is a pathovar of E. coli and is distantly related to the five genomes in Example 2. We perform the strain-level typing using the database prepared in Example 2.
 ```bash
-$ python MIST.py strain --threads 8 --indexpath _MIST_index/ --pair1 example2.1.fq –pair2 example2.2.fq --read_length 100 --cluster_output _MIST_cluster.csv  --output 
+$ python MIST.py strain --threads 8 --indexpath _MIST_index/ --pair1 example2.1.fq –pair2 example2.2.fq --read_length 100 --cluster_output _MIST_cluster.csv --output 
 ```
 Where example2.1.fq and example2.2.fq are the paired Shigella reads. In the _MIST_0.98_xxxout, it shows the reads are assigned to cluster xx and xxx, with a similarity of xx and xx. Because this estimate is performed at the 98% ANI level, the query reads and the assigned cluster should have a similarity above 98%. Hence, a similarity below 0.98 indicates that the query reads actually do not belong to the clusters but represent a novel one. Notably, this speculation is based on the hypothesis that the sequencing errors are so few that can be ignored, since a low similarity can also result from high rate of sequencing errors.
 
