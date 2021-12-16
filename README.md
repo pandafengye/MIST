@@ -89,7 +89,7 @@ genome before each analysis of metagenomics datasets.
 ### Options:
       -p, --threads INTEGER      
     Number of threads for Bowtie2 (default: 8)
-     -c, --cluster_output PATH  
+      -c, --cluster_output PATH  
      input file; the matrix of the clustered reference genomes
       -i, --indexpath PATH       
     input folder of index files for reference genomes; produced by MIST-index module.
