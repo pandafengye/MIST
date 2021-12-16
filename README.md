@@ -110,10 +110,8 @@ $  python MIST.py species --threads 8 --pair_1 Example_Dir/input/read/example_da
   The pre-built pan-genome index file is available at http://bacdb.cn/Pre-built-pangenome.tgz. 
   For the reads specific to each pathogen species (\_MIST.\*.fq), 0.1x sequencing coverage of bacterial genome (e.g. 5000 100-bp reads for a 5-Mb bacterial genome) is usually sufficient for MIST to do strain-level typing. Too many reads (e.g., > 50000 reads) for the subsequent mapping and maximum likelihood estimation would otherwise cause long running time. Users can extract a subset (5000) of reads with the command such as "head –n 20000 _MIST.*.fq > input.fq".
 
-
 ### MIST-strain
   This module functions to map metagenomic sequences against reference genomes using Bowtie2, and to measure the relative abundance of each cluster in the metagenomics dataset, along with similarity and reliability assessment.
-
 ### Command
   ```bash
   $ python MIST.py strain --threads 8 --indexpath Example_Dir/output/_MIST_index/ --cluster_output Example_Dir/output/_MIST_ref_cluster.csv --pair_1 Example_Dir/input/read/test.1.fq --pair_2 Example_Dir/input/read/test.2.fq --read_length 200 --output Example_Dir/output/
@@ -137,3 +135,17 @@ $  python MIST.py species --threads 8 --pair_1 Example_Dir/input/read/example_da
     genome size (optional)
       -o, --output PATH        
     output folder for mismatch matrix file and alignment output files. A folder _MIST_map_alignment, which contains the mapped .sam files corresponding to each reference genome; a file _MIST_map_Mismatch_matrix.csv, which contains the number of mismatches derived from each read mapping against each reference genome.
+
+
+## Output files
+All output files and directories are described in the table below.
+File/Directory | Description | Module
+---   | --- | ---
+`_MIST_index/`   | Directory containing the index files for reference genomes.                   | Index
+`_MIST_species/`  | Directory containing contains read counts for each pathogen species and reads specific to each pathogen species. | Species
+`_MIST_strain/`  | Directory containing contains output for strain-level typing. | Strain
+`_MIST_ref_cluster.csv`  | The matrix file of the clustered reference genomes. | Cluster
+`_MIST_map_Mismatch_matrix.csv`  | The number of mismatches derived from each read mapping against each reference genome. | Strain
+`_MIST_0.98_measure.csv`  | Information of the estimated strain-level abundance and similarity are given for each cluster at the 98% ANI level. | Strain
+`_MIST_0.99_measure.csv`  | Information of the estimated strain-level abundance and similarity are given for each cluster at the 99% ANI level. | Strain
+`_MIST_0.999_measure.csv`  | Information of the estimated strain-level abundance and similarity are given for each cluster at the 99.9% ANI level. | Strain
