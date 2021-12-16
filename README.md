@@ -60,7 +60,7 @@ genome before each analysis of metagenomics datasets.
   ```
 ### Options: 
     -i, --refdir PATH 
-         Path to the reference genome folder; All reference genomes should be in FASTA format and put in the same folder; each file represents one reference genome, with a *.fa prefix. See the example folder ‘test/sampledata/ref_dir’.
+         Path to the reference genome folder; All reference genomes should be in FASTA format and put in the same folder; each file represents one reference genome, with a *.fa prefix.
     -o, --output PATH
        Output folder saving the index files for reference genomes. The base name of the index is the same as the reference genome.
  ## MIST-cluster
@@ -99,7 +99,7 @@ genome before each analysis of metagenomics datasets.
       -l, --read_length FLOAT   
     read length
       -o, --output PATH        
-    output folder for mismatch matrix file and alignment output files. A folder _MIST_map_alignment, which contains the mapped .sam files corresponding to each reference genome; a file _MIST_map_Mismatch_matrix.csv, which contains the number of mismatches derived from each read mapping against each reference genome. See example fold ‘test/result/’.
+    output folder for mismatch matrix file and alignment output files. A folder _MIST_map_alignment, which contains the mapped .sam files corresponding to each reference genome; a file _MIST_map_Mismatch_matrix.csv, which contains the number of mismatches derived from each read mapping against each reference genome.
 ## MIST-measure
   This module functions to measure the relative abundance of each cluster in the metagenomics dataset, along with similarity and reliability assessment.
 ### Command
