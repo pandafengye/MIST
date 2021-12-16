@@ -34,7 +34,7 @@ and estimate the abundance by counting the reads mapped to each species. The spe
 typing.
 ### Command
 ```bash
-$  python MIST.py species --threads 8 --pair_1 Example_Dir/input/read/test.1.fq --pair_2 Example_Dir/input/read/test.2.fq --database Pre-built-pangenome/ --output Example_Dir/output/
+$  python MIST.py species --threads 8 --pair_1 Example_Dir/input/read/example_data1.1.fq --pair_2 Example_Dir/input/read/example_data1.2.fq --database Pre-built-pangenome/ --output Example_Dir/output/
 ```
 ### Options:
   	-p, --threads INTEGER      
@@ -83,7 +83,7 @@ genome before each analysis of metagenomics datasets.
   This module functions to map metagenomic sequences against reference genomes using Bowtie2. 
 ### Command
   ```bash
-  $ python MIST.py map --threads 8 --indexpath Example_Dir/output/_MIST_index/ --pair_1 Example_Dir/input/read/test.1.fq --pair_2 Example_Dir/input/read/test.2.fq --read_length 200 --output Example_Dir/output/
+  $ python MIST.py map --threads 8 --indexpath Example_Dir/output/_MIST_index/ --pair_1 Example_Dir/input/read/example_data1.1.fq --pair_2 Example_Dir/input/read/example_data1.2.fq --read_length 200 --output Example_Dir/output/
   ```
 ### Options:
       -p, --threads INTEGER      
@@ -104,7 +104,7 @@ genome before each analysis of metagenomics datasets.
   This module functions to measure the relative abundance of each cluster in the metagenomics dataset, along with similarity and reliability assessment.
 ### Command
 ```bash
-$ python MIST.py strain --threads 8 --indexpath Example_Dir/output/_MIST_index/ --cluster_output Example_Dir/output/_MIST_ref_cluster.csv --pair_1 Example_Dir/input/read/test.1.fq --pair_2 Example_Dir/input/read/test.2.fq --read_length 200 --output Example_Dir/output/
+$ python MIST.py strain --threads 8 --indexpath Example_Dir/output/_MIST_index/ --cluster_output Example_Dir/output/_MIST_ref_cluster.csv --pair_1 Example_Dir/input/read/example_data1.1.fq --pair_2 Example_Dir/input/read/example_data1.2.fq --read_length 200 --output Example_Dir/output/
 ```
 ### Options:
     -c, --cluster_output PATH  
@@ -114,7 +114,7 @@ $ python MIST.py strain --threads 8 --indexpath Example_Dir/output/_MIST_index/ 
     -l, --read_length FLOAT   
     read length
     -o, --output PATH        
-    output folder in which the result files correspond to each level of cluster. Information of the estimated abundance, 95% CI, P value and similarity are given for each cluster in each file. See example fold ‘test/result/’.
+    output folder in which the result files correspond to each level of cluster. Information of the estimated abundance and similarity are given for each cluster in each file.
 # Availability of pre-built database
 Users can customize their own database by 1) downloading reference genomes of a certain species in fasta format; 2) cluster these reference genomes by the “cluster” module; and 3) bowtie-index these reference genomes by the “index” module.
 Alternatively, users can directly use the current pre-built database, which is developed for the following 14 bacterial species.
