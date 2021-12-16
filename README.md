@@ -6,9 +6,9 @@
 * [Requirements](#Requirements)
 * [Installation](#Installation)
 * [Usage](#Usage)
-* [Output files](#Output files)
+* [Output files](#Output-files)
 * [Examples](#Examples)
-* [FAQ and miscellaneous tips](#FAQ and miscellaneous tips)
+* [FAQ and miscellaneous tips](#FAQ-and-miscellaneous-tips)
 
 ## Introduction
 MIST is a metagenomic intra-species typing technique that was developed primarily for clinical specimens with low pathogen loads. Hopefully, it will aid in strain-level diagnoses of bacterial infections as well as public health epidemiology and surveillance. Its algorithm contains the following three characteristics. 
