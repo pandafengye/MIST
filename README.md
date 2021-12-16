@@ -15,7 +15,7 @@ MIST is a metagenomic intra-species typing technique that was developed primaril
 * Based on average nucleotide identity (ANI), reference genomes are clustered into hierarchical levels to resolve the ambiguous definition of “strain”.
 * Maximum likelihood estimation is conducted upon the reads’ mismatch values to infer the compositional abundance.
 * Read ambiguity is used to infer the abundance uncertainty, and the similarity to reference genomes is used to predict the presence of novel strains.
-MIST contains four modules: Species, Cluster, Index, Strain. Its workflow is depicted in the figure below. MIST depends on the counts of reads that are uniquely matched to the pan-genomes of each pathogen species for __species-level typing__ (panel A). Next, MIST prepares a hierarchical database of reference genomes based on ANI grouping for __strain-level typing__ (panel B). By matching reads to all of the species' reference genomes, the scores for each alignment are transformed to posterior probabilities that indicate the likelihood of the sequence read of being allocated to each cluster. The probability matrix is then employed using the maximum likelihood estimation (MLE) to infer the abundance of each cluster.
+MIST contains four modules: `Index`, `Cluster`, `Species`, `Strain`. Its workflow is depicted in the figure below. MIST depends on the counts of reads that are uniquely matched to the pan-genomes of each pathogen species for __species-level typing__ (panel A). Next, MIST prepares a hierarchical database of reference genomes based on ANI grouping for __strain-level typing__ (panel B). By matching reads to all of the species' reference genomes, the scores for each alignment are transformed to posterior probabilities that indicate the likelihood of the sequence read of being allocated to each cluster. The probability matrix is then employed using the maximum likelihood estimation (MLE) to infer the abundance of each cluster.
 
 <p align="center"><img src="https://github.com/pandafengye/MIST/blob/master/Pipeline.png" alt="workflow_small"  width="800">
 
@@ -31,24 +31,20 @@ __Note: Red box, the module `Species`; yellow box, the modules `Index` and `Clus
 * Python modules: `networkx`, `pandas`, `matplotlib`, `numpy`, `scipy`, `scikit-learn`, `joblib`, `click`.
 
 ### Pre-built database
-* Pre-built-pangenome: This folder is used in the “species” module, which include bowtie-indexed pan-genomes of 14 bacterial species (listed below).
-* Pre-built bowtie-indexed reference genomes: For each species, their complete genomes deposited from NCBI Genbank database are downloaded and are Bowtie-indexed with the module `index`. These pre-built bowtie index files are used in combination with the pre-built clustering files in the module `strain`.
-   * [Acinetobacter_baumannii](http://bacdb.cn/Acinetobacter_baumannii_MIST_index.tgz)
-   * [Campylobacter_jejuni](http://bacdb.cn/Campylobacter_jejuni_MIST_index.tgz)
-   * [Clostriodioides_difficile](http://bacdb.cn/Clostriodioides_difficile_MIST_index.tgz)
-   * [Enterococcus_faecalis](http://bacdb.cn/Enterococcus_faecalis_MIST_index.tgz)
-   * [Enterococcus_faecium](http://bacdb.cn/Enterococcus_faecium_MIST_index.tgz)
-   * [Escherichia_coli](http://bacdb.cn/Escherichia_coli_MIST_index.tgz)
-   * [Haemophilus_influenzae](http://bacdb.cn/Haemophilus_influenzae_MIST_index.tgz)
-   * [Klebsiella_pneumoniae](http://bacdb.cn/Klebsiella_pneumoniae_MIST_index.tgz)
-   * [Legionella_pneumophila](http://bacdb.cn/Legionella_pneumophila_MIST_index.tgz)
-   * [Listeria_monocytogenes](http://bacdb.cn/Listeria_monocytogenes_MIST_index.tgz)
-   * [Mycobacterium_tuberculosis](http://bacdb.cn/Mycobacterium_tuberculosis_MIST_index.tgz)
-   * [Salmonella_enterica](http://bacdb.cn/Salmonella_enterica_MIST_index.tgz)
-   * [Staphylococcus_aureus](http://bacdb.cn/Staphylococcus_aureus_MIST_index.tgz)
-   * [Streptococcus_pneumoniae](http://bacdb.cn/Streptococcus_pneumoniae_MIST_index.tgz)
+* Pre-built-pangenome: This folder is used in the `species` module, which include Bowtie-indexed pan-genomes of 14 bacterial species (listed below).
+* Pre-built Bowtie-indexed reference genomes: For each species, their complete genomes deposited from NCBI Genbank database are downloaded and are Bowtie-indexed with the module `index`. These pre-built Bowtie index files are used in combination with the pre-built clustering files in the module `strain`.
 
-* Pre-built-clustering files: This folder contains the clustering files (obtained from the module `cluster`) for the 14 pathogens and is used in the module `strain`. Same as above, these clustering files can only be used in combination with the bowtie-indexed reference genomes.
+|  Species   | Species  |
+|  ----  | ----  |
+| [Acinetobacter baumannii](http://bacdb.cn/Acinetobacter_baumannii_MIST_index.tgz)  | [Campylobacter jejuni](http://bacdb.cn/Campylobacter_jejuni_MIST_index.tgz) |
+| [Clostriodioides difficile](http://bacdb.cn/Clostriodioides_difficile_MIST_index.tgz)  | [Enterococcus faecalis](http://bacdb.cn/Enterococcus_faecalis_MIST_index.tgz) |
+| [Enterococcus faecium](http://bacdb.cn/Enterococcus_faecium_MIST_index.tgz)  | [Escherichia coli](http://bacdb.cn/Escherichia_coli_MIST_index.tgz) |
+| [Haemophilus influenzae](http://bacdb.cn/Haemophilus_influenzae_MIST_index.tgz)  | [Klebsiella pneumoniae](http://bacdb.cn/Klebsiella_pneumoniae_MIST_index.tgz) |
+| [Legionella pneumophila](http://bacdb.cn/Legionella_pneumophila_MIST_index.tgz)  | [Listeria monocytogenes](http://bacdb.cn/Listeria_monocytogenes_MIST_index.tgz)
+| [Mycobacterium tuberculosis](http://bacdb.cn/Mycobacterium_tuberculosis_MIST_index.tgz)  | [Salmonella enterica](http://bacdb.cn/Salmonella_enterica_MIST_index.tgz) |
+| [Staphylococcus aureus](http://bacdb.cn/Staphylococcus_aureus_MIST_index.tgz)  | [Streptococcus pneumoniae](http://bacdb.cn/Streptococcus_pneumoniae_MIST_index.tgz) |
+
+* Pre-built-clustering files: This folder contains the clustering files (obtained from the module `cluster`) for the 14 pathogens and is used in the module `strain`. Same as above, these clustering files can only be used in combination with the Bowtie-indexed reference genomes.
 
 __Note:__ In additional to the pre-built database above, you can customize your own database by the following steps:
    * Downloading reference genomes of a certain species in FASTA format.
@@ -82,7 +78,7 @@ genome before each analysis of metagenomics datasets.
        Output folder saving the index files for reference genomes. The base name of the index is the same as the reference genome.
  
 ### MIST-cluster
-  This module functions to assign reference genomes into clusters at user-defined levels. MIST calls FastANI program to calculate ANI for estimation of pairwise genetic distance, based on which the reference genomes are divided into clusters. Same as the Index module, once the clusters are established, users are not required to run this module before each independent job.
+  This module functions to assign reference genomes into clusters at user-defined levels. MIST calls FastANI program to calculate ANI for estimation of pairwise genetic distance, based on which the reference genomes are divided into clusters. Same as the `index` module, once the clusters are established, users are not required to run this module before each independent job.
 ### Command
   ```bash
   $ python MIST.py cluster --threads 8 --refdir Example_Dir/input/ref_dir/ --cutoff 0.98,0.99,0.999 --output Example_Dir/output/
