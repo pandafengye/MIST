@@ -1,11 +1,11 @@
+import warnings
+warnings.filterwarnings("ignore", category=DeprecationWarning) 
 import matplotlib
 matplotlib.use('Agg')
 import os,datetime
 import os.path
 import click
 import MIST
-import warnings
-warnings.filterwarnings("ignore", category=DeprecationWarning) 
 import sys   
 sys.setrecursionlimit(100000)
 import faulthandler;faulthandler.enable()
