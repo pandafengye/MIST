@@ -104,7 +104,7 @@ genome before each analysis of metagenomics datasets.
   This module functions to measure the relative abundance of each cluster in the metagenomics dataset, along with similarity and reliability assessment.
 ### Command
 ```bash
-$ python MIST.py subspecies --cluster_output Example_Dir/output/_MIST_ref_cluster.csv --mismatch_matrix_output Example_Dir/output/_MIST_map_Mismatch_matrix.csv --read_length 200 --output Example_Dir/output/
+$ python MIST.py strain --threads 8 --indexpath Example_Dir/output/_MIST_index/ --cluster_output Example_Dir/output/_MIST_ref_cluster.csv --pair_1 Example_Dir/input/read/test.1.fq --pair_2 Example_Dir/input/read/test.2.fq --read_length 200 --output Example_Dir/output/
 ```
 ### Options:
     -c, --cluster_output PATH  
