@@ -8,15 +8,12 @@
  Hopefully, it benefits strain-level diagnostics of bacterial infections as well as public health epidemiology and surveillance.
 
 # Prerequisites
-Linux system
-
-Python = 3.6
-
-GCC >= 4.8
-
-Bowtie 2
-
-FastANI
+* Linux system
+* [Python = 3.6](https://www.python.org)
+* [GCC >= 4.8](https://gcc.gnu.org)
+* [Bowtie 2](https://github.com/BenLangmead/bowtie2)
+* [FastANI](https://github.com/ParBLiSS/FastANI)
+* Python modules: `networkx`, `pandas`, `matplotlib`, `numpy`, `scipy`, `scikit-learn`, `joblib`, `click`.
 
 # Download and install 
 
@@ -124,21 +121,17 @@ Alternatively, users can directly use the current pre-built database, which is d
 1)	Pre-built-pangenome: This folder is used in the “species” module, and include bowtie-indexed pan-genomes of the above 14 bacterial species.
 2)	Pre-built-clustering: This folder contains the clustering files (obtained from the “cluster” module) for the above 14 pathogens and is used in the “subspecies” module. For each of these species, their complete genomes available in Genbank database have been downloaded and clustered by the “cluster” module. These clustering files can only be used in combination with along with the bowtie-indexed reference genomes below.
 3)	Pre-built bowtie-index: the bowtie-indexed reference genomes that correspond to the genomes used for constructing the above pre-built clustering files. These pre-built bowtie index files are used in the “map” module and are available at the following addresses:
--	[Acinetobacter_baumannii](http://bacdb.cn/Acinetobacter_baumannii_MIST_index.tgz)
--	[Campylobacter_jejuni](http://bacdb.cn/Campylobacter_jejuni_MIST_index.tgz)
--	[Clostriodioides_difficile](http://bacdb.cn/Clostriodioides_difficile_MIST_index.tgz)
--	[Enterococcus_faecalis](http://bacdb.cn/Enterococcus_faecalis_MIST_index.tgz)
--	[Enterococcus_faecium](http://bacdb.cn/Enterococcus_faecium_MIST_index.tgz)
--	[Escherichia_coli](http://bacdb.cn/Escherichia_coli_MIST_index.tgz)
--	[Haemophilus_influenzae](http://bacdb.cn/Haemophilus_influenzae_MIST_index.tgz)
--	[Klebsiella_pneumoniae](http://bacdb.cn/Klebsiella_pneumoniae_MIST_index.tgz)
--	[Legionella_pneumophila](http://bacdb.cn/Legionella_pneumophila_MIST_index.tgz)
--	[Listeria_monocytogenes](http://bacdb.cn/Listeria_monocytogenes_MIST_index.tgz)
--	[Mycobacterium_tuberculosis](http://bacdb.cn/Mycobacterium_tuberculosis_MIST_index.tgz)
--	[Salmonella_enterica](http://bacdb.cn/Salmonella_enterica_MIST_index.tgz)
--	[Staphylococcus_aureus](http://bacdb.cn/Staphylococcus_aureus_MIST_index.tgz)
--	[Streptococcus_pneumoniae](http://bacdb.cn/Streptococcus_pneumoniae_MIST_index.tgz)
-
-Note: uncompress (tar zxvf xxx_MIST_index.tgz) before use.
-
-
+* [Acinetobacter_baumannii](http://bacdb.cn/Acinetobacter_baumannii_MIST_index.tgz)
+* [Campylobacter_jejuni](http://bacdb.cn/Campylobacter_jejuni_MIST_index.tgz)
+* [Clostriodioides_difficile](http://bacdb.cn/Clostriodioides_difficile_MIST_index.tgz)
+* [Enterococcus_faecalis](http://bacdb.cn/Enterococcus_faecalis_MIST_index.tgz)
+* [Enterococcus_faecium](http://bacdb.cn/Enterococcus_faecium_MIST_index.tgz)
+* [Escherichia_coli](http://bacdb.cn/Escherichia_coli_MIST_index.tgz)
+* [Haemophilus_influenzae](http://bacdb.cn/Haemophilus_influenzae_MIST_index.tgz)
+* [Klebsiella_pneumoniae](http://bacdb.cn/Klebsiella_pneumoniae_MIST_index.tgz)
+* [Legionella_pneumophila](http://bacdb.cn/Legionella_pneumophila_MIST_index.tgz)
+* [Listeria_monocytogenes](http://bacdb.cn/Listeria_monocytogenes_MIST_index.tgz)
+* [Mycobacterium_tuberculosis](http://bacdb.cn/Mycobacterium_tuberculosis_MIST_index.tgz)
+* [Salmonella_enterica](http://bacdb.cn/Salmonella_enterica_MIST_index.tgz)
+* [Staphylococcus_aureus](http://bacdb.cn/Staphylococcus_aureus_MIST_index.tgz)
+* [Streptococcus_pneumoniae](http://bacdb.cn/Streptococcus_pneumoniae_MIST_index.tgz)
