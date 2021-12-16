@@ -149,3 +149,35 @@ File/Directory | Description | Module
 `_MIST_0.98_measure.csv`  | Information of the estimated strain-level abundance and similarity are given for each cluster at the 98% ANI level. | Strain
 `_MIST_0.99_measure.csv`  | Information of the estimated strain-level abundance and similarity are given for each cluster at the 99% ANI level. | Strain
 `_MIST_0.999_measure.csv`  | Information of the estimated strain-level abundance and similarity are given for each cluster at the 99.9% ANI level. | Strain
+
+
+## Examples
+### __Example 1: Subtype strains from mNGS data using a prebuilt reference database__
+In this example, we will demonstrate how to use MIST to identify bacterial strains in the mNGS dataset in a standard manner.
+* __Step 1: Species-level typing.__ Assume you have a pair of mNGS reads, which is derived from pain-end sequncing. Here we use example_data1.1.fq and example_data1.1.fq, which are located in the `Example_Dir/input/read/`. We download the bowtie-indexed pangenomes of the 14 common bacterial species, and map the FASTQ reads against the genomes using the module species.
+```bash
+$ python MIST.py species --threads 8 --pair_1 Example_Dir/input/read/example_data1.1.fq --pair_2 Example_Dir/input/read/example_data1.2.fq --database Pre-built-pangenome/ --output Example_Dir/output/
+```
+In the output folder `Example_Dir/output/_MIST_species/`, the result file `species_count.txt` reveals that in the mNGS reads there are a total of 18628 E. coli reads as well as a few from other species. You may assume that E. coli is the causative pathogen and choose E. coli for the subsequent strain-level typing accordingly. The result file `_MIST.Escherichia_coli.fq` stores the E. coli reads retrieved from the mNGS dataset.
+
+No. | Species | Read count
+---   | --- | ---
+`0`   | Escherichia_coli | 18628
+`1`  | Salmonella_enterica | 224
+`2`  | Klebsiella_pneumoniae | 89
+`3`  | Acinetobacter_baumannii | 4
+
+* __Step 2: Strain-level typing.__ We need to first download the pre-built Bowtie-indexed E. coli reference genomes and the pre-built E. coli clustering files, and run the module `Strain`. 
+```bash
+python MIST.py strain --threads 8 --indexpath Escherichia_coli_MIST_index/ --single reads  _MIST.Escherichia_coli.fq --read_length 100 --cluster_output Escherichia_coli.MIST_ref_cluster.csv --genome_size 5000000--output Example_Dir/output/
+```
+The input file `_MIST.Escherichia_coli.fq` is derived from `Step 1`.
+The input clustering file `Escherichia_coli.MIST_ref_cluster.csv` looks like this, in which each reference genome (each row) will be assigned to a certain cluster at a certain ANI threshold (e.g., `0.98`, `0.99` and `0.999`).
+
+Strain | 0.98 | 0.99 | 0.999
+---   | --- | --- | ---
+`AE005174.fa`   | 0                   | 0            | 0
+`AE005674.fa`  | 0 | 1            | 1
+`AE014073.fa`  | 0         | 1 | 1
+`AE014075.fa`   | 1                        | 9 | 2
+`AM946981.fa` | 0                      | 2          | 125
