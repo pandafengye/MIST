@@ -79,15 +79,18 @@ genome before each analysis of metagenomics datasets.
     -s, --cutoff TEXT    
     list of similarity thresholds (between 0 and 1); separated by comma (e.g. 0.98,0.99)
 
-## MIST-map
-  This module functions to map metagenomic sequences against reference genomes using Bowtie2. 
+## MIST-strain
+  This module functions to map metagenomic sequences against reference genomes using Bowtie2, and to measure the relative abundance of each cluster in the metagenomics dataset, along with similarity and reliability assessment.
+
 ### Command
   ```bash
-  $ python MIST.py map --threads 8 --indexpath Example_Dir/output/_MIST_index/ --pair_1 Example_Dir/input/read/example_data1.1.fq --pair_2 Example_Dir/input/read/example_data1.2.fq --read_length 200 --output Example_Dir/output/
+  $ python MIST.py strain --threads 8 --indexpath Example_Dir/output/_MIST_index/ --cluster_output Example_Dir/output/_MIST_ref_cluster.csv --pair_1 Example_Dir/input/read/test.1.fq --pair_2 Example_Dir/input/read/test.2.fq --read_length 200 --output Example_Dir/output/
   ```
 ### Options:
       -p, --threads INTEGER      
     Number of threads for Bowtie2 (default: 8)
+     -c, --cluster_output PATH  
+     input file; the matrix of the clustered reference genomes
       -i, --indexpath PATH       
     input folder of index files for reference genomes; produced by MIST-index module.
       -U, --single_end PATH     
@@ -98,23 +101,11 @@ genome before each analysis of metagenomics datasets.
     input fq file with #2 mate, paired with pair_1 file; either choose the paired input or the single-end input.
       -l, --read_length FLOAT   
     read length
+      -g, --genome_size INTEGER  
+    genome size (optional)
       -o, --output PATH        
     output folder for mismatch matrix file and alignment output files. A folder _MIST_map_alignment, which contains the mapped .sam files corresponding to each reference genome; a file _MIST_map_Mismatch_matrix.csv, which contains the number of mismatches derived from each read mapping against each reference genome.
-## MIST-measure
-  This module functions to measure the relative abundance of each cluster in the metagenomics dataset, along with similarity and reliability assessment.
-### Command
-```bash
-$ python MIST.py strain --threads 8 --indexpath Example_Dir/output/_MIST_index/ --cluster_output Example_Dir/output/_MIST_ref_cluster.csv --pair_1 Example_Dir/input/read/example_data1.1.fq --pair_2 Example_Dir/input/read/example_data1.2.fq --read_length 200 --output Example_Dir/output/
-```
-### Options:
-    -c, --cluster_output PATH  
-    input file; the matrix of the clustered reference genomes
-    -m, --mismatch_matrix_output PATH 
-    input file; the mismatch matrix of the alignments
-    -l, --read_length FLOAT   
-    read length
-    -o, --output PATH        
-    output folder in which the result files correspond to each level of cluster. Information of the estimated abundance and similarity are given for each cluster in each file.
+
 # Availability of pre-built database
 Users can customize their own database by 1) downloading reference genomes of a certain species in fasta format; 2) cluster these reference genomes by the “cluster” module; and 3) bowtie-index these reference genomes by the “index” module.
 Alternatively, users can directly use the current pre-built database, which is developed for the following 14 bacterial species.
