@@ -31,7 +31,7 @@ __Note: Red box, the module `Species`; yellow box, the modules `Index` and `Clus
 * Python modules: `networkx`, `pandas`, `matplotlib`, `numpy`, `scipy`, `scikit-learn`, `joblib`, `click`.
 
 ### Pre-built database
-* Pre-built-pangenome: This folder is used in the `species` module, which include Bowtie-indexed pan-genomes of 14 bacterial species (listed below).
+* Pre-built-pangenome: This folder is used in the `species` module, which include Bowtie-indexed pan-genomes of `14` bacterial species (listed below).
 * Pre-built Bowtie-indexed reference genomes: For each species, their complete genomes deposited from NCBI Genbank database are downloaded and are Bowtie-indexed with the module `index`. These pre-built Bowtie index files are used in combination with the pre-built clustering files in the module `strain`.
 
 |  Species   | Species  |
@@ -163,7 +163,7 @@ In this example, we will demonstrate how to use MIST to identify bacterial strai
 ```bash
 $ python MIST.py species --threads 8 --pair_1 Example_Dir/input/read/example_data1.1.fq --pair_2 Example_Dir/input/read/example_data1.2.fq --database Pre-built-pangenome/ --output Example_Dir/output/
 ```
-In the output folder `Example_Dir/output/_MIST_species/`, the result file `species_count.txt` reveals that in the mNGS reads there are a total of `18628` E. coli reads as well as a few from other species. You may assume that E. coli is the causative pathogen and choose E. coli for the subsequent strain-level typing accordingly. The result file `_MIST.Escherichia_coli.fq` stores the E. coli reads retrieved from the mNGS dataset.
+In the output folder `Example_Dir/output/_MIST_species/`, the result file `species_count.txt` reveals that in the mNGS reads there are a total of `18628` *E. coli* reads as well as a few from other species. You may assume that *E. coli* is the causative pathogen and choose *E. coli* for the subsequent strain-level typing accordingly. The result file `_MIST.Escherichia_coli.fq` stores the *E. coli* reads retrieved from the mNGS dataset.
 
 No. | Species | Read count
 ---   | --- | ---
@@ -172,7 +172,7 @@ No. | Species | Read count
 `2`  | Klebsiella_pneumoniae | 89
 `3`  | Acinetobacter_baumannii | 4
 
-* __Step 2: Strain-level typing.__ We need to first download the pre-built Bowtie-indexed E. coli reference genomes and the pre-built E. coli clustering files (place them in the directory Example_Dir/input/), and run the module `Strain`.
+* __Step 2: Strain-level typing.__ We need to first download the pre-built Bowtie-indexed *E. coli* reference genomes and the pre-built *E. coli* clustering files (place them in the directory Example_Dir/input/), and run the module `Strain`.
 ```bash
 python MIST.py strain --threads 8 --indexpath Example_Dir/input/Escherichia_coli_MIST_index/ --single_end Example_Dir/output/_MIST_species/_MIST.Escherichia_coli.fq --read_length 100 --cluster_output Example_Dir/input/Escherichia_coli.MIST_ref_cluster.csv --genome_size 5000000 --output Example_Dir/output/
 ```
@@ -195,16 +195,16 @@ Number | Cluster | Abundance | Unique_best_reads | Shared_best_reads | Similarit
 `1`  | 4 | 0.4757            | 0 | 10869 | 0.9969 | 0.2174
 
 ### __Example 2: Strain-level typing using a customized reference database__
-When the organism you are interested is not in the list of pre-built database, you need to customize your own database. For example, after you run Step 1 of Example, you have speculated E. coli is the probable pathogen, and assume the pre-built database of E. coli is not provided, please do as follows.
-* __Step 1:__ Suppose you retrieve five E. coli genomes (in FASTA format) from NCBI or other database and save them under the directory Example_Dir/input/ref_dir/. Firstly, build the Bowtie2-index files for the genomes by using the module `index`.
+When the organism you are interested is not in the list of pre-built database, you need to customize your own database. For example, after you run Step 1 of Example, you have speculated *E. coli* is the probable pathogen, and assume the pre-built database of *E. coli* is not provided, please do as follows.
+* __Step 1:__ Suppose you retrieve five *E. coli* genomes (in FASTA format) from NCBI or other database and save them under the directory Example_Dir/input/ref_dir/. Firstly, build the Bowtie2-index files for the genomes by using the module `index`.
 ```bash
 $ python MIST.py index --refdir Example_Dir/input/ref_dir/ --output Example_Dir/output/
 ```
-* __Step 2:__ Then you will see the Example_Dir/output directory there are five subdirectories, which correspond to the five E. coli genomes. Secondly, assign the reference genomes into clusters at certain ANI levels by running the module `cluster`. If you have no idea of how to set the ANI thresholds, just try 0.98, 0.99, 0.999, 0.9999.
+* __Step 2:__ Then you will see the Example_Dir/output directory there are five subdirectories, which correspond to the five *E. coli* genomes. Secondly, assign the reference genomes into clusters at certain ANI levels by running the module `cluster`. If you have no idea of how to set the ANI thresholds, just try 0.98, 0.99, 0.999, 0.9999.
 ```bash
 $ python MIST.py cluster --threads 8 --refdir Example_Dir/input/ref_dir/ --cutoff 0.98,0.99,0.999 --output Example_Dir/output/
 ```
-In the output clustering file `Example_Dir/output/_MIST_ref_cluster.csv`, you will see that, at the 98% ANI level, the genome CP002729.fa, CU928160.fa, CP017979.fa and AP012030.fa belong to the same cluster; but at the 99% level, CU928160.fa splits and forms its independent cluster.
+In the output clustering file `Example_Dir/output/_MIST_ref_cluster.csv`, you will see that, at the `98%` ANI level, the genome `CP002729.fa`, `CU928160.fa`, `CP017979.fa` and `AP012030.fa` belong to the same cluster; but at the `99%` level, `CU928160.fa` splits and forms its independent cluster.
 
 Genome | 0.98 | 0.99 | 0.999
 ---   | --- | --- | ---
@@ -214,17 +214,17 @@ Genome | 0.98 | 0.99 | 0.999
 `AP012030.fa`   | 0                        | 1 | 1
 `CU928163.fa` | 1                      | 2          | 3
 
-* __Step 3:__ Run the module `Strain` using the prepared `output` directory and `_MIST_ref_cluster.csv`.
+* __Step 3:__ Run the module `Strain` using the prepared `index` output directory and the `_MIST_ref_cluster.csv` file.
 ```bash
 $ python MIST.py strain --threads 8 --indexpath Example_Dir/output/_MIST_index/ --cluster_output Example_Dir/output/_MIST_ref_cluster.csv --pair_1 Example_Dir/input/read/example_data1.1.fq --pair_2 Example_Dir/input/read/example_data1.2.fq --read_length 100 --genome_size 5000000 --output Example_Dir/output/
 ```
 
 ### __Example 3: Identification of a novel strain by MIST__
-Occasionally the strain in the clinical samples is not represented by the database, which we call a `novel` strain. Under such circumstance, MIST may still assign it to a certain cluster in the database, but you can predict if there is a `novel` strain based on the similarity provided by the output. In this example, we use the query reads derived from Shigella dysenteriae. This is a pathovar of E. coli and is distantly related to the five genomes in Example 2. We perform the strain-level typing using the database prepared in Example 2.
+Occasionally the strain in the clinical samples is not represented by the database, which we call a __novel__ strain. Under such circumstance, MIST may still assign it to a certain cluster in the database, but you can predict if there is a __novel__ strain based on the similarity provided by the output. In this example, we use the query reads derived from *Shigella dysenteriae*. This is a pathovar of *E. coli* and is distantly related to the five genomes in Example 2. We perform the strain-level typing using the database prepared in Example 2.
 ```bash
 $ python MIST.py strain --threads 8 --indexpath Example_Dir/output/_MIST_index/ --pair_1 Example_Dir/input/read/example_data2.1.fq --pair_2 Example_Dir/input/read/example_data2.2.fq --read_length 100 --cluster_output Example_Dir/output/_MIST_ref_cluster.csv --output Example_Dir/output/
 ```
-Where `example_data2.1.fq` and `example_data2.2.fq` are the paired Shigella reads. In the `_MIST_0.98_measure.csv`, it shows the reads are assigned to cluster xx and xxx, with a similarity of xx and xx. Because this estimate is performed at the `98%` ANI level, the query reads and the assigned cluster should have a similarity above `98%`. Hence, a similarity below `0.98` indicates that the query reads actually do not belong to the clusters but represent a novel one. Notably, this speculation is based on the hypothesis that the sequencing errors are so few that can be ignored, since a low similarity can also result from high rate of sequencing errors.
+Where `example_data2.1.fq` and `example_data2.2.fq` are the paired Shigella reads. In the `_MIST_0.98_measure.csv`, it shows the reads are assigned to cluster `0` and `1`, with a similarity of `0.9786` and `0.9762`. Because this estimate is performed at the `98%` ANI level, the query reads and the assigned cluster should have a similarity above `98%`. Hence, a similarity below `0.98` indicates that the query reads actually do not belong to the clusters but represent a novel one. Notably, this speculation is based on the hypothesis that the sequencing errors are so few that can be ignored, since a low similarity can also result from high rate of sequencing errors.
 
 Number | Cluster | Abundance | Unique_best_reads | Shared_best_reads | Similarity
 ---   | --- | --- | --- | --- | ---
@@ -233,7 +233,7 @@ Number | Cluster | Abundance | Unique_best_reads | Shared_best_reads | Similarit
 
 ## FAQ and miscellaneous tips
 * How long does it take to process a mNGS sample?<br>
-MIST is thorough and accurate, but not particularly fast. The MIST-measure step of the pipeline can take a while to complete. Two main factors influence the running time: the number of reads (more reads take longer to align) and the size of the pre-built database (i.e., the number of reference genomes). By default the module `strain` uses 8 threads only, but using more threads (with the --threads option) may speed up the calculation. 
+MIST is thorough and accurate, but not particularly fast. The MIST-measure step of the pipeline can take a while to complete. Two main factors influence the running time: the number of reads (more reads take longer to align) and the size of the pre-built database (i.e., the number of reference genomes). By default the module `strain` uses `8` threads only, but using more threads (with the --threads option) may speed up the calculation. 
 
 * Does MIST support the data from long sequencing platform, i.e., Oxford Nanopore?<br>
 To our knowledge, genetic differences across strains are mostly represented in strain-specific indel regions and SNPs. Long-read sequencing may well address the former, but calls SNPs poorly with a limited sequencing depth, in particular for mNGS dataset which is usually characterized by an extremely low bacterial load. We are quite confident of the future of long-read sequencing. And MIST can be quite easily adjusted from short-read sequencing mode to long-read sequencing as its algorithm is relatively independent from the sequencing technology.
