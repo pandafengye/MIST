@@ -1,3 +1,5 @@
+import warnings
+warnings.simplefilter("ignore",category=DeprecationWarning)
 import os,math,re,sys,datetime,heapq
 from collections import defaultdict
 import pandas as pd
@@ -8,9 +10,7 @@ import matplotlib.pyplot as plt
 from sklearn import datasets,ensemble,naive_bayes
 from sklearn.model_selection import train_test_split
 from sklearn.externals import joblib
-import warnings,datetime
-sys.setrecursionlimit(100000) #
-warnings.filterwarnings('ignore')
+sys.setrecursionlimit(100000) 
 #from collections import Counter
 
 def as_num(x):
@@ -143,7 +143,7 @@ def strain(indexpath,read_length,cluster_output,output,threads=8,single_end=None
             """Count the minimum number of Mismatch, the number of unique minimum values, 
                and the total Mismatch and total similarity of each cluster"""
             DT = {}
-            data = P_matrix1
+            data = P_matrix1.copy()
             Total_Min = {};
             Unique_Min = {};
             Total_Mismatch = {};
@@ -151,23 +151,33 @@ def strain(indexpath,read_length,cluster_output,output,threads=8,single_end=None
             Total_Depth={}
             values = data.min(axis=1)
             Keys = data.columns
+            
+            Diff_cutoff = read_length;  # cutoff for filtering false match reads
+            if pair_1!=None and pair_2!=None and single_end==None:
+                Diff_cutoff = 2*read_length/10
+            else:
+                Diff_cutoff = read_length/10            
+                       
             for k in Keys:
                 Min = 0;
-                Mismatch = 0;
-                Similarity = 0
-                temp = data[k]
+                Mismatch = 0;                 
+                Similarity = 0;
+                temp = data[k];
                 for j, z in zip(temp, values):
                     # print(j)
                     if j == z:  #
-                        if z < read_length/20 :
+                        if z < Diff_cutoff :
                             Mismatch = Mismatch+z
                             Min = Min + 1
-                            if pair_1!=None and pair_2!=None and single_end==None:
-                                Similarity = 1 - Mismatch / (2*read_length * Min)
-                            else:
-                                Similarity = 1 - Mismatch / (read_length * Min)
+                                
+ 
+                if pair_1!=None and pair_2!=None and single_end==None:
+                    Similarity = 1 - Mismatch / (2*read_length * Min)
+                else:
+                    Similarity = 1 - Mismatch / (read_length * Min)
+                    
                 Total_Min[k] = Min;
-                Total_Mismatch[k] = Mismatch
+                Total_Mismatch[k] = Mismatch;
                 Total_Similarity[k] = Similarity;
            
      #       print(Total_Similarity)
@@ -180,17 +190,23 @@ def strain(indexpath,read_length,cluster_output,output,threads=8,single_end=None
                     d[k].append(vy)
                 min_count = sorted(d.items(), key=lambda d: d[0], reverse=True)[0]
                 #             print(min_count)
-                if len(min_count[1]) == 1:
-                    unique_min = unique_min + 1
-                    if min_count[1][0] in Unique_Min.keys():
-                        unique_min = Unique_Min[min_count[1][0]] + 1
+ 
+                if min_count[0] < Diff_cutoff:
+                    if len(min_count[1]) == 1:
+                        unique_min = unique_min + 1
+                        if min_count[1][0] in Unique_Min.keys():
+                            unique_min = Unique_Min[min_count[1][0]] + 1
                 #             print(unique_min)
                 Unique_Min[min_count[1][0]] = unique_min
             for k in Keys:
                 if k not in Unique_Min.keys():
                     Unique_Min[k] = 0
             for k in Keys:
-                Depth = read_length*Total_Min[k]/genome_size
+                if pair_1!=None and pair_2!=None and single_end==None:
+                    Depth = 2*read_length*Total_Min[k]/genome_size
+                else:
+                    Depth = read_length*Total_Min[k]/genome_size
+                    
                 Total_Depth[k]=Depth
             DT["Total_Min"] = Total_Min
             DT["Unique_Min"] = Unique_Min
@@ -199,7 +215,7 @@ def strain(indexpath,read_length,cluster_output,output,threads=8,single_end=None
             DT['Depth']=Total_Depth
             Last_result = pd.DataFrame.from_dict(DT, orient='index')
             #print(Last_result.T)
-            """Calculate standard deviation and Pvalue"""
+    #        """Calculate standard deviation and Pvalue"""
             data=Last_result.T
     #         print(data.sort_values(by="Total_Min" , ascending=False) )
      #####################################################################################################################
@@ -480,13 +496,19 @@ def strain(indexpath,read_length,cluster_output,output,threads=8,single_end=None
             """Count the minimum number of Mismatch, the number of unique minimum values, 
                and the total Mismatch and total similarity of each cluster"""
             DT = {}
-            data = P_matrix1
+            data = P_matrix1.copy()
             Total_Min = {};
             Unique_Min = {};
             Total_Mismatch = {};
             Total_Similarity = {}
             values = data.min(axis=1)
             Keys = data.columns
+            Diff_cutoff = read_length;  # cutoff for filtering false match reads
+            if pair_1!=None and pair_2!=None and single_end==None:
+                Diff_cutoff = 2*read_length/10
+            else:
+                Diff_cutoff = read_length/10
+
             for k in Keys:
                 Min = 0;
                 Mismatch = 0;
@@ -495,7 +517,7 @@ def strain(indexpath,read_length,cluster_output,output,threads=8,single_end=None
                 for j, z in zip(temp, values):
                     # print(j)
                     if j == z:  #
-                        if z<read_length/20:
+                        if z<Diff_cutoff:
                             Mismatch = Mismatch+z
                             Min = Min + 1
                             if pair_1!=None and pair_2!=None and single_end==None:
@@ -516,11 +538,12 @@ def strain(indexpath,read_length,cluster_output,output,threads=8,single_end=None
                 for k, vy in [(v, y) for y, v in zip(data.columns, data.iloc[j])]:
                     d[k].append(vy)
                 min_count = sorted(d.items(), key=lambda d: d[0], reverse=True)[0]
-                #             print(min_count)
-                if len(min_count[1]) == 1:
-                    unique_min = unique_min + 1
-                    if min_count[1][0] in Unique_Min.keys():
-                        unique_min = Unique_Min[min_count[1][0]] + 1
+                #print(min_count);print(Diff_cutoff)
+                if min_count[0]<Diff_cutoff:
+                    if len(min_count[1]) == 1:
+                        unique_min = unique_min + 1
+                        if min_count[1][0] in Unique_Min.keys():
+                            unique_min = Unique_Min[min_count[1][0]] + 1
                 #             print(unique_min)
                 Unique_Min[min_count[1][0]] = unique_min
             for k in Keys:
