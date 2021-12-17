@@ -201,7 +201,7 @@ Cluster | Abundance | Unique_best_reads | Shared_best_reads | Similarity（待�
 When the organism you are interested is not in the list of pre-built database, you need to customize your own database. For example, after you run Step 1 of Example, you have speculated E. coli is the probable pathogen, and assume the pre-built database of E. coli is not provided, please do as follows.
 * __Step 1:__ Suppose you retrieve five E. coli genomes (in Fasta format) from NCBI or other database and save them under the directory Example_Dir/input/ref_dir/. Firstly, build the Bowtie2-index files for the genomes by using the module `index`.
 ```bash
-$ python MIST.py index --refdir Example_Dir/input/ref_dir/ --output Example_Dir/output
+$ python MIST.py index --refdir Example_Dir/input/ref_dir/ --output Example_Dir/output/
 ```
 * __Step 2:__ Then you will see the Example_Dir/output directory there are five subdirectories, which correspond to the five E. coli genomes. Secondly, assign the reference genomes into clusters at certain ANI levels by running the module `cluster`. If you don’t know how to set the ANI thresholds, just try 0.98, 0.99, 0.999, 0.9999.
 ```bash
