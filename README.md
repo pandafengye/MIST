@@ -159,7 +159,7 @@ File/Directory | Description | Module
 ## Examples
 ### __Example 1: Subtype strains from mNGS data using a prebuilt reference database__
 In this example, we will demonstrate how to use MIST to identify bacterial strains in the mNGS dataset in a standard manner.
-* __Step 1: Species-level typing.__ Assume you have a pair of mNGS reads, which is derived from pain-end sequncing. Here we use example_data1.1.fq and example_data1.2.fq, which are located in the `Example_Dir/input/read/`. We download the bowtie-indexed pangenomes of the `14` common bacterial species, and map the FASTQ reads against the genomes using the module `species`.
+* __Step 1: Species-level typing.__ Assume you have a pair of mNGS reads, which are derived from paired-end sequncing. Here we use example_data1.1.fq and example_data1.2.fq, which are located in the `Example_Dir/input/read/`. We also download the Bowtie-indexed pangenomes of the `14` common bacterial species, and map the FASTQ reads against the genomes using the module `species`.
 ```bash
 $ python MIST.py species --threads 8 --pair_1 Example_Dir/input/read/example_data1.1.fq --pair_2 Example_Dir/input/read/example_data1.2.fq --database Pre-built-pangenome/ --output Example_Dir/output/
 ```
@@ -172,11 +172,11 @@ No. | Species | Read count
 `2`  | Klebsiella_pneumoniae | 89
 `3`  | Acinetobacter_baumannii | 4
 
-* __Step 2: Strain-level typing.__ We need to first download the pre-built Bowtie-indexed E. coli reference genomes and the pre-built E. coli clustering files, and run the module `Strain`. 
+* __Step 2: Strain-level typing.__ We need to first download the pre-built Bowtie-indexed E. coli reference genomes and the pre-built E. coli clustering files (place them in the directory Example_Dir/input/), and run the module `Strain`.
 ```bash
-python MIST.py strain --threads 8 --indexpath Escherichia_coli_MIST_index/ --single_end _MIST.Escherichia_coli.fq --read_length 100 --cluster_output Escherichia_coli.MIST_ref_cluster.csv --genome_size 5000000 --output Example_Dir/output/
+python MIST.py strain --threads 8 --indexpath Example_Dir/input/Escherichia_coli_MIST_index/ --single_end Example_Dir/output/_MIST_species/_MIST.Escherichia_coli.fq --read_length 100 --cluster_output Example_Dir/input/Escherichia_coli.MIST_ref_cluster.csv --genome_size 5000000 --output Example_Dir/output/
 ```
-The input file `_MIST.Escherichia_coli.fq` is derived from `Step 1`.
+__Note:__ The input file `_MIST.Escherichia_coli.fq` is derived from `Step 1`.
 The input clustering file `Escherichia_coli.MIST_ref_cluster.csv` looks like this, in which each reference genome (each row) will be assigned to a certain cluster at a certain ANI threshold (e.g., `0.98`, `0.99` and `0.999`).
 
 Strain | 0.98 | 0.99 | 0.999
@@ -187,15 +187,12 @@ Strain | 0.98 | 0.99 | 0.999
 `AE014075.fa`   | 1                        | 9 | 2
 `AM946981.fa` | 0                      | 2          | 125
 
-In the output folder `Example_Dir/output/`, the most important result files `_MIST_0.98_measure.csv`, `_MIST_0.99_measure.csv`, and `_MIST_0.999_measure.csv` correspond to the ANI levels listed in the clustering file. In the `_MIST_0.999_measure.csv`, for example, we can see that there are two clusters in the query reads, with cluster x accounting for ??% and cluster x accounting  for ??%. The column `unique best reads` and `shared best reads` mean maximum mapping score is unique to this cluster and maximum mapping score may also appear in other clusters. The average similarity of these reads against the reference genome of the clusters is listed in the column `similarity`. The coverage is calculated based the number of the best reads and the input genome size.
+In the output folder `Example_Dir/output/_MIST_strain/`, the most important result files `_MIST_0.98_measure.csv`, `_MIST_0.99_measure.csv`, and `_MIST_0.999_measure.csv` correspond to the ANI levels listed in the clustering file. In the `_MIST_0.999_measure.csv`, for example, we can see that there are two clusters in the query reads, with cluster `357` accounting for `51.07%` and cluster `4` accounting  for `47.57%`. The column `unique best reads` and `shared best reads` mean maximum mapping score is unique to this cluster and maximum mapping score may also appear in other clusters. The average similarity of these reads against the reference genome of the clusters is listed in the column `similarity`. The coverage is calculated based the number of the best reads and the input genome size.
 
-Cluster | Abundance | Unique_best_reads | Shared_best_reads | Similarity（待更新）
----   | --- | --- | --- | ---
-`0`   | 196                   | 0            | 0 | 0
-`1`  | 211 | 1            | 1 | 0
-`2`  | 258         | 1 | 1 | 0
-`3`   | 357                        | 9 | 2 | 0
-`4` | 4                      | 2          | 125 | 0
+Number | Cluster | Abundance | Unique_best_reads | Shared_best_reads | Similarity | Depth
+---   | --- | --- | --- | --- | --- | ---
+`0`   | 357                   | 0.5107            | 0 | 11412 | 0.9968 | 0.2282
+`1`  | 4 | 0.4757            | 0 | 10869 | 0.9969 | 0.2174
 
 ### __Example 2: Strain-level typing using a customized reference database__
 When the organism you are interested is not in the list of pre-built database, you need to customize your own database. For example, after you run Step 1 of Example, you have speculated E. coli is the probable pathogen, and assume the pre-built database of E. coli is not provided, please do as follows.
