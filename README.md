@@ -15,7 +15,8 @@ MIST is a metagenomic intra-species typing technique that was developed primaril
 * Based on average nucleotide identity (ANI), reference genomes are clustered into hierarchical levels to resolve the ambiguous definition of “strain”.
 * Maximum likelihood estimation is conducted upon the reads’ mismatch values to infer the compositional abundance.
 * Read ambiguity is used to infer the abundance uncertainty, and the similarity to reference genomes is used to predict the presence of novel strains.
-MIST contains four modules: `Index`, `Cluster`, `Species`, `Strain`. Its workflow is depicted in the figure below. MIST depends on the counts of reads that are uniquely matched to the pan-genomes of each pathogen species for __species-level typing__ (panel A). Next, MIST prepares a hierarchical database of reference genomes based on ANI grouping for __strain-level typing__ (panel B). By matching reads to all of the species' reference genomes, the scores for each alignment are transformed to posterior probabilities that indicate the likelihood of the sequence read of being allocated to each cluster. The probability matrix is then employed using the maximum likelihood estimation (MLE) to infer the abundance of each cluster.
+MIST contains four modules: `Index`, `Cluster`, `Species`, `Strain`. Its workflow is depicted in the figure below.
+MIST depends on the counts of reads that are matched to the pan-genomes of each pathogen species for __species-level typing__ (panel A). Next, MIST prepares a hierarchical database of reference genomes based on ANI grouping for __strain-level typing__ (panel B). By matching reads to all of the species' reference genomes, the scores for each alignment are transformed to posterior probabilities that indicate the likelihood of the sequence read of being allocated to each cluster. The probability matrix is then employed using the maximum likelihood estimation (MLE) to infer the abundance of each cluster.
 
 <p align="center"><img src="https://github.com/pandafengye/MIST/blob/master/Pipeline.png" alt="workflow_small"  width="800">
 
@@ -44,7 +45,7 @@ __Note: Red box, the module `Species`; yellow box, the modules `Index` and `Clus
 | [Mycobacterium tuberculosis](http://bacdb.cn/Mycobacterium_tuberculosis_MIST_index.tgz)  | [Salmonella enterica](http://bacdb.cn/Salmonella_enterica_MIST_index.tgz) |
 | [Staphylococcus aureus](http://bacdb.cn/Staphylococcus_aureus_MIST_index.tgz)  | [Streptococcus pneumoniae](http://bacdb.cn/Streptococcus_pneumoniae_MIST_index.tgz) |
 
-* Pre-built-clustering files: This folder contains the clustering files (obtained from the module `cluster`) for the 14 pathogens and is used in the module `strain`. Same as above, these clustering files can only be used in combination with the Bowtie-indexed reference genomes.
+* [Pre-built-clustering files](http://bacdb.cn/Pre-built-pangenome.tgz): This folder contains the clustering files (obtained from the module `cluster`) for the 14 pathogens and is used in the module `strain`. Same as above, these clustering files can only be used in combination with the Bowtie-indexed reference genomes.
 
 __Note:__ In additional to the pre-built database above, you can customize your own database by the following steps:
    * Downloading reference genomes of a certain species in FASTA format.
@@ -112,7 +113,7 @@ $  python MIST.py species --threads 8 --pair_1 Example_Dir/input/read/example_da
   	-o, --output PATH        
 	output folder which contains: 1) read counts for each pathogen species (_MIST_species_count.txt); 2) reads specific to each pathogen species (_MIST.*.fq).
 ### Tips:
-  The pre-built pan-genome index file is available at http://bacdb.cn/Pre-built-pangenome.tgz. 
+  The pre-built pan-genome index file is available at [here](http://bacdb.cn/Pre-built-pangenome.tgz).
   For the reads specific to each pathogen species (\_MIST.\*.fq), 0.1x sequencing coverage of bacterial genome (e.g. 5000 100-bp reads for a 5-Mb bacterial genome) is usually sufficient for MIST to do strain-level typing. Too many reads (e.g., > 50000 reads) for the subsequent mapping and maximum likelihood estimation would otherwise cause long running time. Users can extract a subset (5000) of reads with the command such as "head –n 20000 _MIST.*.fq > input.fq".
 
 ### MIST-strain
