@@ -32,8 +32,8 @@ __Note: Red box, the module `Species`; yellow box, the modules `Index` and `Clus
 * Python modules: `networkx`, `pandas`, `matplotlib`, `numpy`, `scipy`, `scikit-learn`, `joblib`, `click`.
 
 ### Pre-built database
-* Pre-built-pangenome: This folder is used in the `species` module, which include Bowtie-indexed pan-genomes of `14` bacterial species (listed below).
-* Pre-built Bowtie-indexed reference genomes: For each species, their complete genomes deposited from NCBI Genbank database are downloaded and are Bowtie-indexed with the module `index`. These pre-built Bowtie index files are used in combination with the pre-built clustering files in the module `strain`.
+* Pre-built pangenome: This folder is used in the `species` module, which include Bowtie-indexed pan-genomes of `14` bacterial species (listed below).
+* Pre-built Bowtie indexed reference genomes: For each species, their complete genomes deposited from NCBI Genbank database are downloaded and are Bowtie-indexed with the module `index`. These pre-built Bowtie index files are used in combination with the pre-built clustering files in the module `strain`.
 
 |  Species   | Species  |
 |  ----  | ----  |
@@ -45,7 +45,7 @@ __Note: Red box, the module `Species`; yellow box, the modules `Index` and `Clus
 | [Mycobacterium tuberculosis](http://bacdb.cn/Mycobacterium_tuberculosis_MIST_index.tgz)  | [Salmonella enterica](http://bacdb.cn/Salmonella_enterica_MIST_index.tgz) |
 | [Staphylococcus aureus](http://bacdb.cn/Staphylococcus_aureus_MIST_index.tgz)  | [Streptococcus pneumoniae](http://bacdb.cn/Streptococcus_pneumoniae_MIST_index.tgz) |
 
-* [Pre-built-clustering files](http://bacdb.cn/Pre-built-pangenome.tgz): This folder contains the clustering files (obtained from the module `cluster`) for the 14 pathogens and is used in the module `strain`. Same as above, these clustering files can only be used in combination with the Bowtie-indexed reference genomes.
+* [Pre-built clustering files](http://bacdb.cn/Pre-built-pangenome.tgz): This folder contains the clustering files (obtained from the module `cluster`) for the 14 pathogens and is used in the module `strain`. Same as above, these clustering files can only be used in combination with the Bowtie-indexed reference genomes.
 
 __Note:__ In additional to the pre-built database above, you can customize your own database by the following steps:
    * Downloading reference genomes of a certain species in FASTA format.
