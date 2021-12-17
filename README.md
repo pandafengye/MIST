@@ -219,15 +219,15 @@ Genome | 0.98 | 0.99 | 0.999
 
 * __Step 3:__ Run the module `Strain` using the prepared `output` directory and `_MIST_ref_cluster.csv`.
 ```bash
-$ python MIST.py strain --threads 8 --indexpath Example_Dir/output/_MIST_index/ --cluster_output Example_Dir/output/_MIST_ref_cluster.csv --pair_1 Example_Dir/input/read/test.1.fq --pair_2 Example_Dir/input/read/test.2.fq --read_length 200 --output Example_Dir/output/
+$ python MIST.py strain --threads 8 --indexpath Example_Dir/output/_MIST_index/ --cluster_output Example_Dir/output/_MIST_ref_cluster.csv --pair_1 Example_Dir/input/read/example_data1.1.fq --pair_2 Example_Dir/input/read/example_data1.2.fq --read_length 200 --output Example_Dir/output/
 ```
 
 ### __Example 3: Identification of a novel strain by MIST__
 Occasionally the strain in the clinical samples is not represented by the database, which we call a `novel` strain. Under such circumstance, MIST may still assign it to a certain cluster in the database, but you can predict if there is a `novel` strain based on the similarity provided by the output. In this example, we use the query reads derived from Shigella dysenteriae. This is a pathovar of E. coli and is distantly related to the five genomes in Example 2. We perform the strain-level typing using the database prepared in Example 2.
 ```bash
-$ python MIST.py strain --threads 8 --indexpath _MIST_index/ --pair1 example2.1.fq –pair2 example2.2.fq --read_length 100 --cluster_output _MIST_cluster.csv --output 
+$ python MIST.py strain --threads 8 --indexpath Example_Dir/output/_MIST_index/ --pair_1 Example_Dir/input/read/example_data2.1.fq --pair_2 Example_Dir/input/read/example_data2.2.fq --read_length 100 --cluster_output Example_Dir/output/_MIST_ref_cluster.csv --output Example_Dir/output/
 ```
-Where example2.1.fq and example2.2.fq are the paired Shigella reads. In the _MIST_0.98_xxxout, it shows the reads are assigned to cluster xx and xxx, with a similarity of xx and xx. Because this estimate is performed at the 98% ANI level, the query reads and the assigned cluster should have a similarity above 98%. Hence, a similarity below 0.98 indicates that the query reads actually do not belong to the clusters but represent a novel one. Notably, this speculation is based on the hypothesis that the sequencing errors are so few that can be ignored, since a low similarity can also result from high rate of sequencing errors.
+Where `example_data2.1.fq` and `example_data2.2.fq` are the paired Shigella reads. In the `_MIST_0.98_measure.csv`, it shows the reads are assigned to cluster xx and xxx, with a similarity of xx and xx. Because this estimate is performed at the `98%` ANI level, the query reads and the assigned cluster should have a similarity above `98%`. Hence, a similarity below `0.98` indicates that the query reads actually do not belong to the clusters but represent a novel one. Notably, this speculation is based on the hypothesis that the sequencing errors are so few that can be ignored, since a low similarity can also result from high rate of sequencing errors.
 
 Number | Cluster | Abundance | Unique_best_reads | Shared_best_reads | Similarity
 ---   | --- | --- | --- | --- | ---
