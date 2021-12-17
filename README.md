@@ -159,11 +159,11 @@ File/Directory | Description | Module
 ## Examples
 ### __Example 1: Subtype strains from mNGS data using a prebuilt reference database__
 In this example, we will demonstrate how to use MIST to identify bacterial strains in the mNGS dataset in a standard manner.
-* __Step 1: Species-level typing.__ Assume you have a pair of mNGS reads, which is derived from pain-end sequncing. Here we use example_data1.1.fq and example_data1.1.fq, which are located in the `Example_Dir/input/read/`. We download the bowtie-indexed pangenomes of the 14 common bacterial species, and map the FASTQ reads against the genomes using the module species.
+* __Step 1: Species-level typing.__ Assume you have a pair of mNGS reads, which is derived from pain-end sequncing. Here we use example_data1.1.fq and example_data1.2.fq, which are located in the `Example_Dir/input/read/`. We download the bowtie-indexed pangenomes of the `14` common bacterial species, and map the FASTQ reads against the genomes using the module `species`.
 ```bash
 $ python MIST.py species --threads 8 --pair_1 Example_Dir/input/read/example_data1.1.fq --pair_2 Example_Dir/input/read/example_data1.2.fq --database Pre-built-pangenome/ --output Example_Dir/output/
 ```
-In the output folder `Example_Dir/output/_MIST_species/`, the result file `species_count.txt` reveals that in the mNGS reads there are a total of 18628 E. coli reads as well as a few from other species. You may assume that E. coli is the causative pathogen and choose E. coli for the subsequent strain-level typing accordingly. The result file `_MIST.Escherichia_coli.fq` stores the E. coli reads retrieved from the mNGS dataset.
+In the output folder `Example_Dir/output/_MIST_species/`, the result file `species_count.txt` reveals that in the mNGS reads there are a total of `18628` E. coli reads as well as a few from other species. You may assume that E. coli is the causative pathogen and choose E. coli for the subsequent strain-level typing accordingly. The result file `_MIST.Escherichia_coli.fq` stores the E. coli reads retrieved from the mNGS dataset.
 
 No. | Species | Read count
 ---   | --- | ---
