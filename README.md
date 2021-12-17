@@ -45,13 +45,12 @@ __Note: Red box, the module `Species`; yellow box, the modules `Index` and `Clus
 | [Mycobacterium tuberculosis](http://bacdb.cn/Mycobacterium_tuberculosis_MIST_index.tgz)  | [Salmonella enterica](http://bacdb.cn/Salmonella_enterica_MIST_index.tgz) |
 | [Staphylococcus aureus](http://bacdb.cn/Staphylococcus_aureus_MIST_index.tgz)  | [Streptococcus pneumoniae](http://bacdb.cn/Streptococcus_pneumoniae_MIST_index.tgz) |
 
-* [Pre-built clustering files](http://bacdb.cn/Pre-built-pangenome.tgz): This folder contains the clustering files (obtained from the module `cluster`) for the 14 pathogens and is used in the module `strain`. Same as above, these clustering files can only be used in combination with the Bowtie-indexed reference genomes.
+* [Pre-built clustering files](http://bacdb.cn/Pre-built-pangenome.tgz): This folder contains the clustering files (obtained from the module `cluster`) for the `14` pathogens and is used in the module `strain`. Same as above, these clustering files can only be used in combination with the Bowtie-indexed reference genomes.
 
 __Note:__ In additional to the pre-built database above, you can customize your own database by the following steps:
    * Downloading reference genomes of a certain species in FASTA format.
    * Cluster these reference genomes by the `cluster` module.
    * Bowtie-index these reference genomes by the `index` module.
-
 
 ## Installation
   ```bash
@@ -91,7 +90,7 @@ genome before each analysis of metagenomics datasets.
     -o, --output PATH    
     matrix file of the clustered reference genomes
     -s, --cutoff TEXT    
-    list of similarity thresholds (between 0 and 1); separated by comma (e.g. 0.98,0.99)
+    list of similarity thresholds (between 0 and 1); separated by comma (e.g. 0.98,0.99,0.999)
 
 ### MIST-species
 This module functions to perform species-level typing. MIST calls Bowtie2 to map the user’s mNGS reads (in .fastq format) against the pan-genomes of each bacterial species
@@ -117,7 +116,7 @@ $  python MIST.py species --threads 8 --pair_1 Example_Dir/input/read/example_da
   For the reads specific to each pathogen species (\_MIST.\*.fq), 0.1x sequencing coverage of bacterial genome (e.g. 5000 100-bp reads for a 5-Mb bacterial genome) is usually sufficient for MIST to do strain-level typing. Too many reads (e.g., > 50000 reads) for the subsequent mapping and maximum likelihood estimation would otherwise cause long running time. Users can extract a subset (5000) of reads with the command such as "head –n 20000 _MIST.*.fq > input.fq".
 
 ### MIST-strain
-  This module functions to map metagenomic sequences against reference genomes using Bowtie2, and to measure the relative abundance of each cluster in the metagenomics dataset, along with similarity and reliability assessment.
+  This module functions to map metagenomic sequences against reference genomes using Bowtie2, and to measure the relative abundance of each cluster in the metagenomics dataset.
 ### Command
   ```bash
   $ python MIST.py strain --threads 8 --indexpath Example_Dir/output/_MIST_index/ --cluster_output Example_Dir/output/_MIST_ref_cluster.csv --pair_1 Example_Dir/input/read/example_data1.1.fq --pair_2 Example_Dir/input/read/example_data1.2.fq --read_length 200 --genome_size 5000000 --output Example_Dir/output/
