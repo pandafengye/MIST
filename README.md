@@ -174,7 +174,7 @@ No. | Species | Read count
 
 * __Step 2: Strain-level typing.__ We need to first download the pre-built Bowtie-indexed E. coli reference genomes and the pre-built E. coli clustering files, and run the module `Strain`. 
 ```bash
-python MIST.py strain --threads 8 --indexpath Escherichia_coli_MIST_index/ --single reads  _MIST.Escherichia_coli.fq --read_length 100 --cluster_output Escherichia_coli.MIST_ref_cluster.csv --genome_size 5000000 --output Example_Dir/output/
+python MIST.py strain --threads 8 --indexpath Escherichia_coli_MIST_index/ --single_end _MIST.Escherichia_coli.fq --read_length 100 --cluster_output Escherichia_coli.MIST_ref_cluster.csv --genome_size 5000000 --output Example_Dir/output/
 ```
 The input file `_MIST.Escherichia_coli.fq` is derived from `Step 1`.
 The input clustering file `Escherichia_coli.MIST_ref_cluster.csv` looks like this, in which each reference genome (each row) will be assigned to a certain cluster at a certain ANI threshold (e.g., `0.98`, `0.99` and `0.999`).
