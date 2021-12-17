@@ -151,9 +151,9 @@ File/Directory | Description | Module
 `_MIST_strain/`  | Directory containing contains output for strain-level typing. | Strain
 `_MIST_ref_cluster.csv`  | The matrix file of the clustered reference genomes. | Cluster
 `_MIST_map_Mismatch_matrix.csv`  | The number of mismatches derived from each read mapping against each reference genome. | Strain
-`_MIST_0.98_measure.csv`  | Information of the estimated strain-level abundance and similarity are given for each cluster at the 98% ANI level. | Strain
-`_MIST_0.99_measure.csv`  | Information of the estimated strain-level abundance and similarity are given for each cluster at the 99% ANI level. | Strain
-`_MIST_0.999_measure.csv`  | Information of the estimated strain-level abundance and similarity are given for each cluster at the 99.9% ANI level. | Strain
+`_MIST_0.98_measure.csv`  | Estimated abundance for each cluster at the 98% ANI level. | Strain
+`_MIST_0.99_measure.csv`  | Estimated abundance for each cluster at the 99% ANI level. | Strain
+`_MIST_0.999_measure.csv`  | Estimated abundance for each cluster at the 99.9% ANI level. | Strain
 
 
 ## Examples
@@ -187,7 +187,7 @@ Strain | 0.98 | 0.99 | 0.999
 `AE014075.fa`   | 1                        | 9 | 2
 `AM946981.fa` | 0                      | 2          | 125
 
-In the output folder `Example_Dir/output/_MIST_strain/`, the most important result files `_MIST_0.98_measure.csv`, `_MIST_0.99_measure.csv`, and `_MIST_0.999_measure.csv` correspond to the ANI levels listed in the clustering file. In the `_MIST_0.999_measure.csv`, for example, we can see that there are two clusters in the query reads, with cluster `357` accounting for `51.07%` and cluster `4` accounting  for `47.57%`. The column `unique best reads` and `shared best reads` mean maximum mapping score is unique to this cluster and maximum mapping score may also appear in other clusters. The average similarity of these reads against the reference genome of the clusters is listed in the column `similarity`. The coverage is calculated based the number of the best reads and the input genome size.
+In the output folder `Example_Dir/output/_MIST_strain/`, the most important result files `_MIST_0.98_measure.csv`, `_MIST_0.99_measure.csv`, and `_MIST_0.999_measure.csv` correspond to the ANI levels listed in the clustering file. In the `_MIST_0.999_measure.csv`, for example, we can see that there are two clusters in the query reads, with cluster `357` accounting for `51.07%` and cluster `4` accounting  for `47.57%`. The column `unique best reads` and `shared best reads` mean the number of reads with maximum mapping score unique to the cluster and the number of reads with maximum mapping score shared with other clusters, respectively. The average similarity of these reads against the reference genome of the clusters is listed in the column `similarity`. The depth is calculated based on the number of the best reads (unique plus shared) and the input genome size.
 
 Number | Cluster | Abundance | Unique_best_reads | Shared_best_reads | Similarity | Depth
 ---   | --- | --- | --- | --- | --- | ---
@@ -195,12 +195,12 @@ Number | Cluster | Abundance | Unique_best_reads | Shared_best_reads | Similarit
 `1`  | 4 | 0.4757            | 0 | 10869 | 0.9969 | 0.2174
 
 ### __Example 2: Strain-level typing using a customized reference database__
-When the organism you are interested is not in the list of pre-built database, you need to customize your own database. For example, after you run Step 1 of Example, you have speculated *E. coli* is the probable pathogen, and assume the pre-built database of *E. coli* is not provided, please do as follows.
+When the organism in which you are interested is not in the list of pre-built database, you need to customize your own database. For example, after you run Step 1 of Example 1, you have speculated *E. coli* is the probable pathogen, and assume the pre-built database of *E. coli* is not provided, please do as follows.
 * __Step 1:__ Suppose you retrieve five *E. coli* genomes (in FASTA format) from NCBI or other database and save them under the directory Example_Dir/input/ref_dir/. Firstly, build the Bowtie2-index files for the genomes by using the module `index`.
 ```bash
 $ python MIST.py index --refdir Example_Dir/input/ref_dir/ --output Example_Dir/output/
 ```
-* __Step 2:__ Then you will see the Example_Dir/output directory there are five subdirectories, which correspond to the five *E. coli* genomes. Secondly, assign the reference genomes into clusters at certain ANI levels by running the module `cluster`. If you have no idea of how to set the ANI thresholds, just try 0.98, 0.99, 0.999, 0.9999.
+* __Step 2:__ Then you will see in the Example_Dir/output directory there are five subdirectories, which correspond to the five *E. coli* genomes. Secondly, assign the reference genomes into clusters at certain ANI levels by running the module `cluster`. If you have no idea of how to set the ANI thresholds, just try 0.98, 0.99, 0.999, 0.9999.
 ```bash
 $ python MIST.py cluster --threads 8 --refdir Example_Dir/input/ref_dir/ --cutoff 0.98,0.99,0.999 --output Example_Dir/output/
 ```
@@ -228,12 +228,12 @@ Where `example_data2.1.fq` and `example_data2.2.fq` are the paired *Shigella* re
 
 Number | Cluster | Abundance | Unique_best_reads | Shared_best_reads | Similarity
 ---   | --- | --- | --- | --- | ---
-`0`   | 0 | 0.8485 | 0 | 434 | 0.755
-`1`  | 1 | 0.1515 | 300 | -103 | 0.5036
+`0`   | 0 | 0.8401 | 0 | 757 | 0.9786
+`1`  | 1 | 0.1599 | 2 | 298 | 0.9762
 
 ## FAQ and miscellaneous tips
 * How long does it take to process a mNGS sample?<br>
-MIST is thorough and accurate, but not particularly fast. The MIST-measure step of the pipeline can take a while to complete. Two main factors influence the running time: the number of reads (more reads take longer to align) and the size of the pre-built database (i.e., the number of reference genomes). By default the module `strain` uses `8` threads only, but using more threads (with the --threads option) may speed up the calculation. 
+MIST is thorough and accurate, but not particularly fast. The MIST-strain step of the pipeline can take a while to complete. Two main factors influence the running time: the number of reads (more reads take longer to align) and the size of the pre-built database (i.e., the number of reference genomes). By default the module `strain` uses `8` threads only, but using more threads (with the --threads option) may speed up the calculation. 
 
 * Does MIST support the data from long sequencing platform, i.e., Oxford Nanopore?<br>
-To our knowledge, genetic differences across strains are mostly represented in strain-specific indel regions and SNPs. Long-read sequencing may well address the former, but calls SNPs poorly with a limited sequencing depth, in particular for mNGS dataset which is usually characterized by an extremely low bacterial load. We are quite confident of the future of long-read sequencing. And MIST can be quite easily adjusted from short-read sequencing mode to long-read sequencing as its algorithm is relatively independent from the sequencing technology.
+To our knowledge, genetic differences across strains are mostly represented in strain-specific indel regions and SNPs. Long-read sequencing may well address the former, but calls SNPs poorly with a limited sequencing depth, in particular for mNGS dataset which is usually characterized by an extremely low bacterial load. We are quite confident of the future of long-read sequencing. MIST can be quite easily adjusted from short-read sequencing to long-read sequencing as its algorithm is relatively independent from the sequencing technology.
