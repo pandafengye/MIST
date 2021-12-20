@@ -196,11 +196,11 @@ Number | Cluster | Abundance | Unique_best_reads | Shared_best_reads | Similarit
 
 ### __Example 2: Strain-level typing using a customized reference database__
 When the organism in which you are interested is not in the list of pre-built database, you need to customize your own database. For example, after you run Step 1 of Example 1, you have speculated *E. coli* is the probable pathogen, and assume the pre-built database of *E. coli* is not provided, please do as follows.
-* __Step 1:__ Suppose you retrieve five *E. coli* genomes (in FASTA format) from NCBI or other database and save them under the directory Example_Dir/input/ref_dir/. Firstly, build the Bowtie2-index files for the genomes by using the module `index`.
+* __Step 1:__ Suppose you retrieve five *E. coli* genomes (in FASTA format) from NCBI or other database and save them under the directory `Example_Dir/input/ref_dir/`. Firstly, build the Bowtie2-index files for the genomes by using the module `index`.
 ```bash
 $ python MIST.py index --refdir Example_Dir/input/ref_dir/ --output Example_Dir/output/
 ```
-* __Step 2:__ Then you will see in the Example_Dir/output directory there are five subdirectories, which correspond to the five *E. coli* genomes. Secondly, assign the reference genomes into clusters at certain ANI levels by running the module `cluster`. If you have no idea of how to set the ANI thresholds, just try 0.98, 0.99, 0.999, 0.9999.
+* __Step 2:__ Then you will see in the `Example_Dir/output` directory there are five subdirectories, which correspond to the five *E. coli* genomes. Secondly, assign the reference genomes into clusters at certain ANI levels by running the module `cluster`. If you have no idea of how to set the ANI thresholds, just try 0.98, 0.99, 0.999, 0.9999.
 ```bash
 $ python MIST.py cluster --threads 8 --refdir Example_Dir/input/ref_dir/ --cutoff 0.98,0.99,0.999 --output Example_Dir/output/
 ```
