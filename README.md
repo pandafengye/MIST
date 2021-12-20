@@ -172,7 +172,7 @@ No. | Species | Read count
 `2`  | Klebsiella_pneumoniae | 89
 `3`  | Acinetobacter_baumannii | 4
 
-* __Step 2: Strain-level typing.__ We need to first download the pre-built Bowtie-indexed *E. coli* reference genomes and the pre-built *E. coli* clustering files (place them in the directory Example_Dir/input/), and run the module `Strain`.
+* __Step 2: Strain-level typing.__ We need to first download the pre-built Bowtie-indexed *E. coli* reference genomes and the pre-built *E. coli* clustering files (place them in the directory `Example_Dir/input/`), and run the module `Strain`.
 ```bash
 python MIST.py strain --threads 8 --indexpath Example_Dir/input/Escherichia_coli_MIST_index/ --single_end Example_Dir/output/_MIST_species/_MIST.Escherichia_coli.fq --read_length 100 --cluster_output Example_Dir/input/Escherichia_coli.MIST_ref_cluster.csv --genome_size 5000000 --output Example_Dir/output/
 ```
