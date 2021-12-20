@@ -12,7 +12,7 @@
 
 ## Introduction
 MIST is a metagenomic intra-species typing technique that was developed primarily for clinical specimens with low pathogen loads. Hopefully, it will aid in strain-level diagnoses of bacterial infections as well as public health epidemiology and surveillance. Its algorithm contains the following three characteristics. 
-* Based on average nucleotide identity (ANI), reference genomes are clustered into hierarchical levels to resolve the ambiguous definition of “strain”.
+* Based on average nucleotide identity (ANI), reference genomes are clustered into hierarchical levels to resolve the ambiguous definition of __“strain”__.
 * Maximum likelihood estimation is conducted upon the reads’ mismatch values to infer the compositional abundance.
 * Read ambiguity is used to infer the abundance uncertainty, and the similarity to reference genomes is used to predict the presence of novel strains.
 MIST contains four modules: `Index`, `Cluster`, `Species`, `Strain`. Its workflow is depicted in the figure below.
