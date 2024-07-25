@@ -67,19 +67,7 @@ def strain(indexpath,read_length,cluster_output,output,threads=8,single_end=None
 def bootstrap(cluster_output,mismatch,output_dir,read_length,bootstrap_numbers):
     """- perform bootstrapping for abundance estimation"""
     MIST.bootstrap(cluster_output,mismatch,output_dir,read_length,bootstrap_numbers)
-#@cli.command()
-#@click.option('-c','--cluster_output',type=click.Path(exists=True),help="input file; the matrix of the clustered reference genomes")
-#@click.option('-m','--mismatch_matrix_output',type=click.Path(exists=True),help="input file; the mismatch matrix of the alignments")
-#@click.option('-l','--read_length',type=click.FLOAT,help="read length")
-#@click.option('-a','--a_value',type=click.FLOAT,help="a value")
-#@click.option('-o','--output',type=click.Path(exists=False, writable=True),help="output folder for result files")
-#@click.option('-g','--genome_size',type=int,help="genome size (optional)")
-#def subspecies(cluster_output,mismatch_matrix_output,read_length,output,genome_size):
-#    """- estimate strain-level composition"""
-#    start = time.time()
-#    MIST.subspecies(cluster_output,mismatch_matrix_output,read_length,output,genome_size)
-#    end = time.time()
-#    print("subspecies module run time:",end-start)
+
 if __name__=="__main__":
     cli()
 
