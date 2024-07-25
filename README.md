@@ -144,7 +144,7 @@ $  python MIST.py species --threads 8 --pair_1 Example_Dir/input/read/example_da
 This module functions to perform bootstrapping for abundance estimation
 ### Command
   ```bash
-  $ python MIST.py bootstrap --cluster_output Example_Dir/output/_MIST_ref_cluster.csv --mismatch Example_Dir/output/_MIST_strain/_MIST_map_Mismatch_matrix.csv --bootstrap_numbers 10 --read_length 100 --output_dir Example_Dir/output/
+  $ python MIST.py bootstrap --cluster_output Example_Dir/output/_MIST_ref_cluster.csv --mismatch Example_Dir/output/_MIST_strain/_MIST_map_Mismatch_matrix.csv --bootstrap_numbers 100 --read_length 100 --output_dir Example_Dir/output/
   ```
 ### Options:
       -c, --cluster_output PATH       input file; the matrix of the clustered reference genomes (result of the cluster module)
