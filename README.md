@@ -140,7 +140,21 @@ $  python MIST.py species --threads 8 --pair_1 Example_Dir/input/read/example_da
     genome size (optional)
       -o, --output PATH        
     output folder for mismatch matrix file and alignment output files. A folder _MIST_map_alignment, which contains the mapped .sam files corresponding to each reference genome; a file _MIST_map_Mismatch_matrix.csv, which contains the number of mismatches derived from each read mapping against each reference genome.
+### MIST-bootstrap
+This module functions to perform bootstrapping for abundance estimation
+### Command
+  ```bash
+  $ python MIST.py bootstrap --cluster_output Example_Dir/output/_MIST_ref_cluster.csv --mismatch Example_Dir/output/_MIST_strain/_MIST_map_Mismatch_matrix.csv --bootstrap_numbers 10 --read_length 100 --output_dir Example_Dir/output/
+  ```
+### Options:
+      -c, --cluster_output PATH       input file; the matrix of the clustered reference genomes (result of the cluster module)
 
+      -m, --mismatch PATH             input file; _MIST_map_Mismatch_matrix.csv (result of the strain module)
+
+      -n, --bootstrap_numbers INTEGER  number of bootstrap replications [default: 100]
+
+      -l, --read_length INTEGER       read length  [default: 100]
+      -o, --output_dir PATH           output file of abundance estimation
 
 ## Output files
 All output files and directories are described in the table below.
