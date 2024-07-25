@@ -1,11 +1,11 @@
-import warnings
-warnings.filterwarnings("ignore", category=DeprecationWarning) 
 import matplotlib
 matplotlib.use('Agg')
 import os,datetime
 import os.path
 import click
 import MIST
+import warnings
+warnings.filterwarnings("ignore", category=DeprecationWarning) 
 import sys   
 sys.setrecursionlimit(100000)
 import faulthandler;faulthandler.enable()
@@ -22,7 +22,7 @@ def cli():
 @click.option('-d','--database',type=click.Path(exists=True),help="input bowtie2 index file for the pan-genome sequences")
 @click.option('-o','--output',type=click.Path(exists=False, writable=True),help="output folder which contains: 1) read counts for each pathogen species (_MIST_species_count.txt); 2) reads specific to each pathogen species (_MIST.*.fq).")
 def species(pair_1,pair_2,database,output,threads=8):
-    """- perform species-level typing"""
+    """- conduct species-level typing"""
     MIST.species(threads,pair_1,pair_2,database,output)
 
 @cli.command()
@@ -55,6 +55,18 @@ def strain(indexpath,read_length,cluster_output,output,threads=8,single_end=None
     """- perform strain-level typing"""
     MIST.strain(indexpath,read_length,cluster_output,output,threads,single_end,pair_1,pair_2,genome_size)
 
+@cli.command()
+@click.option('-c', '--cluster_output', type=click.Path(exists=True),
+              help="input file; the matrix of the clustered reference genomes (result of the cluster module)")
+@click.option('-m', '--mismatch', type=click.Path(exists=True),
+              help="input file; _MIST_map_Mismatch_matrix.csv (result of the strain module)")
+@click.option('-n', '--bootstrap_numbers', type=int, default=100,show_default=True,help="number of bootstrap replications (default: 100)")
+@click.option('-l', '--read_length', type=int, default=100,show_default=True,help="read length")
+@click.option('-o', '--output_dir', type=click.Path(exists=True),
+              help=" output file of abundance estimation")
+def bootstrap(cluster_output,mismatch,output_dir,read_length,bootstrap_numbers):
+    """- perform bootstrapping for abundance estimation"""
+    MIST.bootstrap(cluster_output,mismatch,output_dir,read_length,bootstrap_numbers)
 #@cli.command()
 #@click.option('-c','--cluster_output',type=click.Path(exists=True),help="input file; the matrix of the clustered reference genomes")
 #@click.option('-m','--mismatch_matrix_output',type=click.Path(exists=True),help="input file; the mismatch matrix of the alignments")
