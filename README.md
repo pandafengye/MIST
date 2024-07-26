@@ -15,7 +15,7 @@ MIST is a metagenomic intra-species typing technique that was developed primaril
 * Based on average nucleotide identity (ANI), reference genomes are clustered into hierarchical levels to resolve the ambiguous definition of __“strain”__.
 * Maximum likelihood estimation is conducted upon the reads’ mismatch values to infer the compositional abundance.
 * Read ambiguity is used to infer the abundance uncertainty, and the similarity to reference genomes is used to predict the presence of novel strains.
-MIST contains four modules: `Index`, `Cluster`, `Species`, `Strain`. Its workflow is depicted in the figure below.
+MIST contains four modules: `Index`, `Cluster`, `Species`, `Strain`, `Bootstrap`. Its workflow is depicted in the figure below.
 MIST depends on the counts of reads that are matched to the pan-genomes of each pathogen species for __species-level typing__ (panel A). Next, MIST prepares a hierarchical database of reference genomes based on ANI grouping for __strain-level typing__ (panel B). By matching reads to all of the species' reference genomes, the scores for each alignment are transformed to posterior probabilities that indicate the likelihood of the sequence read of being allocated to each cluster. The probability matrix is then employed using the maximum likelihood estimation (MLE) to infer the abundance of each cluster.
 
 <p align="center"><img src="https://github.com/pandafengye/MIST/blob/master/Pipeline.png" alt="workflow_small"  width="800">
@@ -62,7 +62,7 @@ __Note:__ In additional to the pre-built database above, you can customize your 
   $ python MIST.py # Test install
   ```
 ## Usage
-MIST contains four modules: __`index`__, __`cluster`__, __`species`__ and __`strain`__.
+MIST contains four modules: __`index`__, __`cluster`__, __`species`__, __`strain`__ and __`bootstrap`__.
 
 ### MIST-index
   This module functions to index the reference genomes with Bowtie2 indexer (Bowtie2-build). Once the reference genomes are indexed, users will not need to re-index the
